@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import { FaStar } from "react-icons/fa";
-import { Link } from "@inertiajs/react";
+import { Link } from "react-router";
 import { useMediaQuery } from "react-responsive";
 
 const FirstScreen = () => {
@@ -17,17 +17,17 @@ const FirstScreen = () => {
             >
                 <div className="flex items-center mr-4 -space-x-3 lg:-space-x-6">
                     <img
-                        className="flex-shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
+                        className="shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
                         src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/8/avatar-2.jpg"
                         alt=""
                     />
                     <img
-                        className="flex-shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
+                        className="shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
                         src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/8/avatar-3.jpg"
                         alt=""
                     />
                     <img
-                        className="flex-shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
+                        className="shrink-0 object-cover w-8 h-8 rounded-full lg:h-14 lg:w-14"
                         src="https://cdn.rareblocks.xyz/collection/celebration/images/testimonials/8/avatar-1.jpg"
                         alt=""
                     />
@@ -64,7 +64,7 @@ const FirstScreen = () => {
                     </p>
 
                     <Link
-                        href="/apply"
+                        to="/apply"
                         className=" p-[5px] font-semibold  text-white bg-blue-800 shadow-md w-5/6 lg:w-[300px] mx-auto  rounded-3xl hover:bg-blue-900"
                     >
                         <span className="flex items-center justify-center py-3 text-center border-2 border-white border-dashed rounded-3xl">

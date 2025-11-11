@@ -1,17 +1,11 @@
 import { IoArrowForward, IoFlashSharp } from "react-icons/io5";
-import designImg from "../../../../assets/images/fashiondesign.jpg";
-import decoImg from "../../../../assets/images/decor.jpg";
-import makeupImg from "../../../../assets/images/makeup.png";
-import millineryImg from "../../../../assets/images/millinery.png";
-import modellingImg from "../../../../assets/images/modelling.png";
-import sketchImg from "../../../../assets/images/fashionsketch.png";
 import { PillCaption } from "../components/PillCaption";
-import { Link } from "@inertiajs/react";
-import { CourseProps, coursesData } from "../Courses/data";
+import { Link } from "react-router";
+import { type CourseProps, coursesData } from "../Courses/data";
 
 const CoursesScreen = () => {
     return (
-        <section className="mt-20">
+        <section className="mt-20 font-poppins">
             <h2 className="mb-2 text-4xl font-semibold text-center ">
                 What We <span className="text-blue-700">Provide</span>{" "}
             </h2>
@@ -65,8 +59,8 @@ const CoursesScreen = () => {
                         to thrive in a dynamic industry.
                     </p>
                     <Link
-                        href={route("homepage.courses")}
-                        className="flex w-fit items-center px-4 py-[6px] text-white border-2 border-transparent bg-blue-700 hover:bg-white hover:text-blue-700 hover:border-blue-700"
+                        to={"/courses"}
+                        className="flex w-fit items-center px-4 py-1.5 text-white border-2 border-transparent bg-blue-700 hover:bg-white hover:text-blue-700 hover:border-blue-700"
                     >
                         Read More <IoArrowForward className="ml-1" />{" "}
                     </Link>
@@ -76,96 +70,7 @@ const CoursesScreen = () => {
                     <CourseCardSimple key={elem.title} course={elem} />
                 ))}
 
-                {/* <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >   
-                    <img
-                        src={designImg}
-                        className="rounded-sm h-[200px] w-full object-cover"
-                        alt=""
-                    />
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Fashion & Design
-                    </h3>
-                </div>
-                <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >
-                    <img
-                        src={decoImg}
-                        className="rounded-sm h-[200px] w-full object-cover"
-                        alt=""
-                    />
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Event Decoration and Planning
-                    </h3>
-                </div>
-                <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >
-                    <div className="pb-2 bg-purple-200 rounded-md">
-                        <img
-                            src={millineryImg}
-                            className="rounded-sm h-[190px] w-full object-cover"
-                            alt=""
-                        />
-                    </div>
-
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Millinery & Accessories
-                    </h3>
-                </div>
-                <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >
-                    <div className="bg-blue-100 rounded-sm">
-                        <img
-                            src={sketchImg}
-                            className="rounded-sm h-[200px] w-full object-contain"
-                            alt=""
-                        />
-                    </div>
-
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Fashion Illustration
-                    </h3>
-                </div>
-                <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >
-                    <div className="rounded-sm bg-amber-200">
-                        <img
-                            src={modellingImg}
-                            className="rounded-sm h-[200px] w-full object-contain"
-                            alt=""
-                        />
-                    </div>
-
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Modelling
-                    </h3>
-                </div>
-                <div
-                    data-aos="fade-up"
-                    className="p-4 border rounded-md lg:p-0 lg:border-none lg:rounded-none"
-                >
-                    <div className="rounded-sm bg-slate-200">
-                        <img
-                            src={makeupImg}
-                            className=" h-[200px] w-full object-contain"
-                            alt=""
-                        />
-                    </div>
-
-                    <h3 className="pt-2 text-lg font-semibold text-center text-blue-900 md:text-base">
-                        Make-ups
-                    </h3>
-                </div> */}
+             
             </section>
         </section>
     );
@@ -174,7 +79,7 @@ const CoursesScreen = () => {
 const CourseCardSimple = ({ course }: { course: CourseProps }) => {
     return (
         <Link
-            href={"/courses"}
+            to={"/courses"}
             data-aos="fade-up"
             className="relative p-4 border rounded-md lg:p-0 group lg:border-none lg:rounded-none "
         >

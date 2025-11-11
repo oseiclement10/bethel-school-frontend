@@ -1,14 +1,16 @@
-import { Head, Link } from "@inertiajs/react";
+import {  Link } from "react-router";
 import Header from "../components/Header";
 import { PillCaption } from "../components/PillCaption";
 import Footer from "../Homepage/Footer";
-import { CourseProps, coursesData } from "./data";
+import { type CourseProps, coursesData } from "./data";
 import { IoBookOutline } from "react-icons/io5";
 
 const Courses = () => {
     return (
         <section>
-            <Head title="Courses" />
+           <meta>
+            <title> Courses </title>
+           </meta>
             <section className="relative bg-blue-600 ">
                 <Header />
             </section>
@@ -80,8 +82,8 @@ const CourseCard = ({
                 </div>
                 <div className="flex items-end justify-end ">
                     <Link
-                        href={"/courses#" + slug}
-                        className="bg-blue-600 flex items-center text-white text-sm px-3 py-[4px] rounded-lg w-fit hover:bg-blue-800 active:opacity-30"
+                        to={"/courses#" + slug}
+                        className="bg-blue-600 flex items-center text-white text-sm px-3 py-1 rounded-lg w-fit hover:bg-blue-800 active:opacity-30"
                     >
                         Read More <IoBookOutline className="ml-1" />
                     </Link>

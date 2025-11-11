@@ -1,9 +1,9 @@
-import designImg from "../../../../assets/images/fashiondesign.jpg";
-import decoImg from "../../../../assets/images/decor.jpg";
-import makeupImg from "../../../../assets/images/makeup.png";
-import millineryImg from "../../../../assets/images/millinery.png";
-import modellingImg from "../../../../assets/images/modelling.png";
-import sketchImg from "../../../../assets/images/fashionsketch.png";
+import designImg from "@/assets/images/courses/fashiondesign.jpg";
+import decoImg from "@/assets/images/courses/decor.jpg";
+import makeupImg from "@/assets/images/courses/makeup.png";
+import millineryImg from "@/assets/images/courses/millinery.png";
+import modellingImg from "@/assets/images/courses/modelling.png";
+import sketchImg from "@/assets/images/courses/fashionsketch.png";
 
 export type CourseProps = {
     imgSrc: string;

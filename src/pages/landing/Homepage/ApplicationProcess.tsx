@@ -1,15 +1,15 @@
 import { IoArrowForward, IoFlashSharp } from "react-icons/io5";
-import docsImg from "../../../../assets/images/docs.png";
-import { Link } from "@inertiajs/react";
+import docsImg from "@/assets/images/docs.png";
+import { Link } from "react-router";
 
 const ApplicationProcess = () => {
     return (
-        <section className="pt-4 pb-8 lg:pt-20 ">
+        <section className="pt-4 pb-20 bg-blue-50/70 lg:pt-28 ">
             <section className="">
                 <div className="w-[80%] mx-auto mb-4 lg:w-5/6">
                     <h3 className="mb-2 text-5xl font-semibold lg:w-3/6 ">
                         Join us and unlock your{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-tr from-blue-600 via-blue-800 to-blue-600">
+                        <span className="text-transparent bg-clip-text bg-linear-to-tr from-blue-600 via-blue-800 to-blue-600">
                             creative potential!
                         </span>{" "}
                         <IoFlashSharp className="inline text-3xl text-amber-500" />{" "}
@@ -23,7 +23,7 @@ const ApplicationProcess = () => {
                 </div>
 
                 <section className="relative">
-                    <div className="absolute top-[50px] w-full h-full bg-blue-50/70  blur-2xl"></div>
+                    <div className="absolute top-[50px] w-full h-full   blur-2xl"></div>
                     <section className="relative grid gap-4 px-4 md:grid-cols-2 lg:px-8 lg:mx-auto lg:grid-cols-4 lg:w-5/6 pt-14 lg:gap-7">
                         <ApplyCard
                             header="Read Requirements"
@@ -61,7 +61,7 @@ const ApplicationProcess = () => {
                         />
                     </section>
                     <div className="absolute flex items-center -bottom-20 right-1/3 jusitfy-center lg:justify-end lg:items-end lg:-bottom-10 lg:right-40">
-                        <Link href={route("homepage.apply")} className="flex items-center px-4 py-2 text-white bg-blue-700 border-2 border-transparent hover:bg-white hover:text-blue-700 hover:border-blue-700">
+                        <Link to={"/apply"} className="flex items-center px-4 py-2 text-white bg-blue-700 border-2 border-transparent hover:bg-white hover:text-blue-700 hover:border-blue-700">
                             Read more <IoArrowForward className="ml-2" />{" "}
                         </Link>
                     </div>

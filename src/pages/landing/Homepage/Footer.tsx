@@ -1,249 +1,250 @@
-import LogoImg from "@/Components/LogoImg";
-import { FaWhatsapp } from "react-icons/fa6";
+import LogoImg from "@/components/LogoImg";
+import { FaWhatsapp, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
-import { useForm, usePage } from "@inertiajs/react";
-import { notification } from "antd";
-import { useEffect } from "react";
+import { MdEmail, MdPhone } from "react-icons/md";
 
 const Footer = () => {
-    const { flash } = usePage().props;
-
-    const { post, data, setData, wasSuccessful, processing, reset } = useForm({
-        email: "",
-    });
-
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        post(route("newsletter-subscription"), {
-            preserveState: true,
-            preserveScroll: true,
-        });
     };
 
-    useEffect(() => {
-        if (wasSuccessful) {
-            reset();
-            notification.success({
-                message: flash?.message,
-            });
+    const processing = false;
+
+    const socialLinks = [
+        {
+            icon: FaFacebookF,
+            href: "#",
+            label: "Facebook"
+        },
+        {
+            icon: FaTwitter,
+            href: "#",
+            label: "Twitter"
+        },
+        {
+            icon: FaInstagram,
+            href: "#",
+            label: "Instagram"
+        },
+        {
+            icon: FaWhatsapp,
+            href: "#",
+            label: "WhatsApp"
         }
-    }, [wasSuccessful]);
+    ];
+
+    const companyLinks = [
+        { name: "About Us", href: "#" },
+        { name: "Contact Us", href: "#" },
+        { name: "Applications", href: "#" },
+        { name: "Programs", href: "#" }
+    ];
+
+    const quickLinks = [
+        { name: "Admissions", href: "#" },
+        { name: "Scholarships", href: "#" },
+        { name: "Campus Tour", href: "#" },
+        { name: "Student Portal", href: "#" }
+    ];
 
     return (
-        <div>
-            <section className="py-10 bg-blue-950 sm:pt-16 lg:pt-24">
-                <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                    <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-16 gap-x-12">
-                        <div className="col-span-2 md:col-span-3 lg:col-span-2 lg:pr-8">
-                            <div className="flex items-start space-x-2">
-                                <LogoImg />
-                                <h3 className="text-lg font-semibold text-white">
-                                    Bethel School of Fashion & Design{" "}
-                                </h3>
+        <footer className="bg-linear-to-br from-blue-900 via-blue-950 to-indigo-950">
+            {/* Main Footer Content */}
+            <section className="py-16 lg:py-20">
+                <div className="px-4 mx-auto max-w-[90%] sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
+                        {/* Brand Section */}
+                        <div className="lg:col-span-4">
+                            <div className="flex items-start space-x-3 mb-6">
+                                <div className="flex-shrink-0">
+                                    <LogoImg />
+                                </div>
+                                <div>
+                                    <h3 className="text-xl font-bold text-white">
+                                        Bethel School of 
+                                        <span className="block bg-gradient-to-r from-blue-200 to-blue-100 bg-clip-text text-transparent">
+                                            Fashion & Design
+                                        </span>
+                                    </h3>
+                                    <div className="w-12 h-1 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mt-2"></div>
+                                </div>
                             </div>
 
-                            <p className="text-base leading-relaxed text-slate-100 mt-7">
-                                Bethel Fashion School is your one stop place for
-                                learning anything fashion related. Join us lets
-                                help you build a career in fashion
+                            <p className="text-lg leading-relaxed text-blue-100 mb-8 max-w-md">
+                                Bethel Fashion School is your premier destination for comprehensive fashion education. 
+                                Join us to build an exceptional career in the fashion industry.
                             </p>
 
-                            <ul className="flex items-center space-x-3 mt-9">
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex items-center justify-center text-white transition-all duration-200 rounded-full bg-sky-800 w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
-                                    >
-                                        <svg
-                                            className="w-4 h-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
+                            {/* Social Links */}
+                            <div className="mb-8">
+                                <p className="text-blue-200 font-medium mb-4">Follow Us</p>
+                                <div className="flex items-center space-x-3">
+                                    {socialLinks.map((social, index) => (
+                                        <a
+                                            key={index}
+                                            href={social.href}
+                                            title={social.label}
+                                            className="group flex items-center justify-center w-10 h-10 text-white transition-all duration-300 rounded-xl bg-blue-800/50 hover:bg-blue-600 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25 backdrop-blur-sm"
                                         >
-                                            <path d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
+                                            <social.icon className="w-4 h-4 transition-transform group-hover:scale-110" />
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
 
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex items-center justify-center text-white transition-all duration-200 rounded-full bg-sky-800 w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
-                                    >
-                                        <svg
-                                            className="w-4 h-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
-                                            <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex items-center justify-center text-white transition-all duration-200 rounded-full bg-sky-800 w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
-                                    >
-                                        <svg
-                                            className="w-4 h-4"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
-                                            <path d="M11.999 7.377a4.623 4.623 0 1 0 0 9.248 4.623 4.623 0 0 0 0-9.248zm0 7.627a3.004 3.004 0 1 1 0-6.008 3.004 3.004 0 0 1 0 6.008z"></path>
-                                            <circle
-                                                cx="16.806"
-                                                cy="7.207"
-                                                r="1.078"
-                                            ></circle>
-                                            <path d="M20.533 6.111A4.605 4.605 0 0 0 17.9 3.479a6.606 6.606 0 0 0-2.186-.42c-.963-.042-1.268-.054-3.71-.054s-2.755 0-3.71.054a6.554 6.554 0 0 0-2.184.42 4.6 4.6 0 0 0-2.633 2.632 6.585 6.585 0 0 0-.419 2.186c-.043.962-.056 1.267-.056 3.71 0 2.442 0 2.753.056 3.71.015.748.156 1.486.419 2.187a4.61 4.61 0 0 0 2.634 2.632 6.584 6.584 0 0 0 2.185.45c.963.042 1.268.055 3.71.055s2.755 0 3.71-.055a6.615 6.615 0 0 0 2.186-.419 4.613 4.613 0 0 0 2.633-2.633c.263-.7.404-1.438.419-2.186.043-.962.056-1.267.056-3.71s0-2.753-.056-3.71a6.581 6.581 0 0 0-.421-2.217zm-1.218 9.532a5.043 5.043 0 0 1-.311 1.688 2.987 2.987 0 0 1-1.712 1.711 4.985 4.985 0 0 1-1.67.311c-.95.044-1.218.055-3.654.055-2.438 0-2.687 0-3.655-.055a4.96 4.96 0 0 1-1.669-.311 2.985 2.985 0 0 1-1.719-1.711 5.08 5.08 0 0 1-.311-1.669c-.043-.95-.053-1.218-.053-3.654 0-2.437 0-2.686.053-3.655a5.038 5.038 0 0 1 .311-1.687c.305-.789.93-1.41 1.719-1.712a5.01 5.01 0 0 1 1.669-.311c.951-.043 1.218-.055 3.655-.055s2.687 0 3.654.055a4.96 4.96 0 0 1 1.67.311 2.991 2.991 0 0 1 1.712 1.712 5.08 5.08 0 0 1 .311 1.669c.043.951.054 1.218.054 3.655 0 2.436 0 2.698-.043 3.654h-.011z"></path>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex items-center justify-center text-white transition-all duration-200 rounded-full bg-sky-800 w-7 h-7 hover:bg-blue-600 focus:bg-blue-600"
-                                    >
-                                        <FaWhatsapp />
-                                    </a>
-                                </li>
-                            </ul>
-
-                            <div className="mt-9">
+                            {/* Contact Info */}
+                            <div className="space-y-3">
                                 <a
                                     href="tel:+233557612426"
-                                    className="px-8 py-3 font-medium text-white transition duration-300 rounded-lg bg-slate-50/10"
+                                    className="group flex items-center space-x-3 text-blue-100 hover:text-white transition-colors duration-200"
                                 >
-                                    Call : 0557612426
+                                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                                        <MdPhone className="w-4 h-4" />
+                                    </div>
+                                    <span className="font-medium">+233 55 761 2426</span>
+                                </a>
+                                <a
+                                    href="mailto:info@bethelfashion.edu"
+                                    className="group flex items-center space-x-3 text-blue-100 hover:text-white transition-colors duration-200"
+                                >
+                                    <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center group-hover:bg-blue-500 transition-colors">
+                                        <MdEmail className="w-4 h-4" />
+                                    </div>
+                                    <span className="font-medium">info@bethelfashion.edu</span>
                                 </a>
                             </div>
                         </div>
 
-                        <div>
-                            <p className="text-sm font-semibold tracking-widest text-gray-200 uppercase">
+                        {/* Quick Links */}
+                        <div className="lg:col-span-2">
+                            <p className="text-lg font-semibold text-white mb-6 pb-2 border-b border-blue-700/50">
+                                Quick Links
+                            </p>
+                            <ul className="space-y-4">
+                                {quickLinks.map((link, index) => (
+                                    <li key={index}>
+                                        <a
+                                            href={link.href}
+                                            className="group flex items-center text-blue-100 hover:text-white transition-all duration-200 hover:translate-x-1"
+                                        >
+                                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                                            {link.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        {/* Company Links */}
+                        <div className="lg:col-span-2">
+                            <p className="text-lg font-semibold text-white mb-6 pb-2 border-b border-blue-700/50">
                                 Company
                             </p>
-
-                            <ul className="mt-6 space-y-4">
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex text-base transition-all duration-200 text-slate-300 hover:text-blue-600 focus:text-blue-600"
-                                    >
-                                        {" "}
-                                        About Us{" "}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex text-base transition-all duration-200 text-slate-300 hover:text-blue-600 focus:text-blue-600"
-                                    >
-                                        {" "}
-                                        Contact Us{" "}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex text-base transition-all duration-200 text-slate-300 hover:text-blue-600 focus:text-blue-600"
-                                    >
-                                        {" "}
-                                        Applications{" "}
-                                    </a>
-                                </li>
+                            <ul className="space-y-4">
+                                {companyLinks.map((link, index) => (
+                                    <li key={index}>
+                                        <a
+                                            href={link.href}
+                                            className="group flex items-center text-blue-100 hover:text-white transition-all duration-200 hover:translate-x-1"
+                                        >
+                                            <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                                            {link.name}
+                                        </a>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-                        <div>
-                            <p className="flex items-center text-sm font-semibold tracking-widest text-gray-200 uppercase">
-                                Locate Us{" "}
-                                <IoLocationOutline className="ml-1 text-base" />
-                            </p>
-
-                            <ul className="mt-6 space-y-4">
-                                <li>
-                                    <a
-                                        href="#"
-                                        title=""
-                                        className="flex text-base transition-all duration-200 text-slate-300 hover:text-blue-600 focus:text-blue-600"
-                                    >
-                                        Atonsu Agogo, Lake Rd, Asokwa Municipal
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a
-                                        href="https://maps.app.goo.gl/h64pDQ22ZZCUsj269"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex text-base transition-all duration-200 text-slate-300 hover:text-blue-600 focus:text-blue-600"
-                                    >
-                                        View on Google Maps
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div className="col-span-2 md:col-span-1 lg:col-span-2 lg:pl-8">
-                            <p className="text-sm font-semibold tracking-widest text-gray-200 uppercase">
-                                Subscribe to newsletter
-                            </p>
-
-                            <form onSubmit={handleSubmit} className="mt-6">
+                        {/* Location & Newsletter */}
+                        <div className="lg:col-span-4">
+                            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-1">
+                                {/* Location */}
                                 <div>
-                                    <label htmlFor="email" className="sr-only">
-                                        Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        id="email"
-                                        value={data.email}
-                                        onChange={(e) =>
-                                            setData("email", e.target.value)
-                                        }
-                                        placeholder="Enter your email"
-                                        className="block w-full p-4 placeholder-gray-500 transition-all border border-gray-200 rounded-md bg-3hite dur2tion-200 text-slate-800 focus:outline-none focus:border-blue-600 caret-blue-600"
-                                    />
+                                    <p className="flex items-center text-lg font-semibold text-white mb-6 pb-2 border-b border-blue-700/50">
+                                        <IoLocationOutline className="mr-2 w-5 h-5 text-blue-300" />
+                                        Locate Us
+                                    </p>
+                                    <div className="space-y-3">
+                                        <p className="text-blue-100 leading-relaxed">
+                                            Atonsu Agogo, Lake Road<br />
+                                            Asokwa Municipal, Kumasi
+                                        </p>
+                                        <a
+                                            href="https://maps.app.goo.gl/h64pDQ22ZZCUsj269"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors duration-200 group"
+                                        >
+                                            View on Google Maps
+                                            <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                                        </a>
+                                    </div>
                                 </div>
 
-                                <button
-                                    type="submit"
-                                    className={`inline-flex items-center justify-center px-6 py-4 mt-3 font-semibold text-white transition-all duration-200 ${
-                                        processing
-                                            ? "opacity-80 cursor-not-allowed"
-                                            : ""
-                                    } bg-blue-600 rounded-md hover:bg-blue-700 focus:bg-blue-700`}
-                                >
-                                    {processing
-                                        ? "subscribing ..."
-                                        : "Subscribe"}
-                                </button>
-                            </form>
+                                {/* Newsletter */}
+                                <div>
+                                    <p className="text-lg font-semibold text-white mb-6 pb-2 border-b border-blue-700/50">
+                                        Stay Updated
+                                    </p>
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div className="relative">
+                                            <input
+                                                type="email"
+                                                name="email"
+                                                id="email"
+                                                onChange={(e) => null}
+                                                placeholder="Enter your email"
+                                                className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 bg-white border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                                            />
+                                        </div>
+                                        <button
+                                            type="submit"
+                                            disabled={processing}
+                                            className={`w-full inline-flex items-center justify-center px-6 py-3 font-semibold text-white transition-all duration-200 rounded-xl ${
+                                                processing
+                                                    ? "bg-blue-400 cursor-not-allowed"
+                                                    : "bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 shadow-lg hover:shadow-blue-500/25"
+                                            }`}
+                                        >
+                                            {processing ? (
+                                                <>
+                                                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                                                    Subscribing...
+                                                </>
+                                            ) : (
+                                                "Subscribe to Newsletter"
+                                            )}
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <hr className="mt-16 mb-10 border-gray-200" />
-
-                    <p className="text-sm text-center text-slate-100">
-                        © Copyright 2024, All Rights Reserved by OAC TechHub
-                    </p>
                 </div>
             </section>
-        </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-blue-800/50">
+                <div className="px-4 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <div className="flex flex-col items-center justify-between md:flex-row">
+                        <p className="text-sm text-blue-200 text-center md:text-left">
+                            © {new Date().getFullYear()} Bethel School of Fashion & Design. All rights reserved.
+                        </p>
+                        <div className="flex items-center mt-4 space-x-6 md:mt-0">
+                            <p className="text-sm text-blue-300">
+                                Crafted with ❤️ by{" "}
+                                <a 
+                                    href="#" 
+                                    className="font-semibold text-blue-100 hover:text-white transition-colors"
+                                >
+                                    OAC TechHub
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     );
 };
 

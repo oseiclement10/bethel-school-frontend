@@ -1,5 +1,5 @@
-import { HtmlHTMLAttributes } from "react";
-import { Link, usePage } from "@inertiajs/react";
+import { type HtmlHTMLAttributes } from "react";
+import { Link } from "react-router";
 
 export const links = [
     {
@@ -9,7 +9,7 @@ export const links = [
     {
         name: "Courses",
         path: "/courses",
-    },  
+    },
     {
         name: "About Us",
         path: "/about-us",
@@ -37,17 +37,17 @@ const SchoolNav = ({ ...props }: HtmlHTMLAttributes<HTMLDivElement>) => {
 export type NavLinkWrapperProps = {
     name: string;
     path: string;
+    url?: string;
 };
 
-export const NavLinkWrapper = ({ name, path }: NavLinkWrapperProps) => {
-    const { url } = usePage();
+export const NavLinkWrapper = ({ name, path, url }: NavLinkWrapperProps) => {
+    
     const isActive = url == path;
     return (
         <Link
-            href={path}
-            className={`hover:opacity-80 text-white routerLink border-b-2 pb-1  ${
-                isActive ? "text-white border-white" : "border-transparent"
-            }`}
+            to={path}
+            className={`hover:opacity-80 text-white routerLink border-b-2 pb-1  ${isActive ? "text-white border-white" : "border-transparent"
+                }`}
         >
             {name}
         </Link>

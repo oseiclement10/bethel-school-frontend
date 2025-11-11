@@ -1,11 +1,10 @@
 import { IoArrowForward } from "react-icons/io5";
-import logoImg from "../../../../assets/images/logo.png";
+import logoImg from "@/assets/images/logo.png";
 import Nav, {
     links,
-    NavLinkWrapper,
-    NavLinkWrapperProps,
+    type NavLinkWrapperProps,
 } from "../components/Nav";
-import { Link, usePage } from "@inertiajs/react";
+import { Link, useLocation } from "react-router";
 import { FaGraduationCap } from "react-icons/fa6";
 import { CiMenuFries } from "react-icons/ci";
 import { Drawer } from "antd";
@@ -13,10 +12,12 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { useState } from "react";
 
 const Header = () => {
-    const { url } = usePage();
-    const isApplyActive = url != "/";
+
+    const { pathname } = useLocation();
+
+    const isApplyActive = pathname != "/";
     const withinApplications =
-        url.includes("apply") || url.includes("admission");
+        pathname.includes("apply") || pathname.includes("admission");
 
     const [isOpen, setIsOpen] = useState(false);
     return (
@@ -24,9 +25,8 @@ const Header = () => {
             <header className="relative z-10 items-center justify-between hidden w-5/6 py-6 mx-auto lg:flex ">
                 <div className="items-center hidden space-x-2 lg:flex">
                     <span
-                        className={` ${
-                            true ? "flex px-2 py-[2px] bg-white rounded-lg" : ""
-                        } `}
+                        className={` ${true ? "flex px-2 py-0.5 bg-white rounded-lg" : ""
+                            } `}
                     >
                         <img
                             src={logoImg}
@@ -42,13 +42,12 @@ const Header = () => {
                 <Nav className="relative mx-auto w-[35%] space-x-6 font-semibold " />
                 <div className="relative flex">
                     <Link
-                        href={
-                            withinApplications ? "#" : route("homepage.apply")
+                        to={
+                            withinApplications ? "#" : "/apply"
                         }
-                        className={`px-4 py-[3px] flex items-center  border-2 border-transparent text-white bg-blue-600 rounded-lg  hover:bg-white hover:rounded-md hover:text-blue-700 hover:border-blue-700 active:opacity-20 ${
-                            isApplyActive &&
-                            "bg-white rounded-md !text-blue-700 "
-                        }`}
+                        className={`px-4 py-[3px] flex items-center  border-2 border-transparent text-white bg-blue-600 rounded-lg  hover:bg-white hover:rounded-md hover:text-blue-700 hover:border-blue-700 active:opacity-20 ${isApplyActive &&
+                            "bg-white rounded-md text-blue-700! "
+                            }`}
                     >
                         {withinApplications ? (
                             <span className="flex items-center">
@@ -64,15 +63,13 @@ const Header = () => {
                 </div>
             </header>
             <header
-                className={`${isApplyActive ? "fixed " : "relative" } top-0 z-30 block w-full px-6 py-4 ${
-                    isApplyActive ? "bg-blue-600" : "bg-transparent"
-                } lg:hidden`}
+                className={`${isApplyActive ? "fixed " : "relative"} top-0 z-30 block w-full px-6 py-4 ${isApplyActive ? "bg-blue-600" : "bg-transparent"
+                    } lg:hidden`}
             >
                 <div className="flex items-center justify-between">
                     <span
-                        className={` ${
-                            true ? "flex px-2 py-[2px] bg-white rounded-lg" : ""
-                        } `}
+                        className={` ${true ? "flex px-2 py-0.5 bg-white rounded-lg" : ""
+                            } `}
                     >
                         <img
                             src={logoImg}
@@ -130,15 +127,13 @@ const MobileMenu = ({ closeMenu }: { closeMenu: () => void }) => {
     );
 };
 
-const MobileLink = ({ path, name }: NavLinkWrapperProps) => {
-    const { url } = usePage();
+const MobileLink = ({ path, name , url}: NavLinkWrapperProps) => {
     const isActive = url == path;
     return (
         <Link
-            href={path}
-            className={`hover:opacity-80 text-slate-800 routerLink font-semibold pb-1  ${
-                isActive ? "!text-blue-800 " : "border-transparent"
-            }`}
+            to={path}
+            className={`hover:opacity-80 text-slate-800 routerLink font-semibold pb-1  ${isActive ? "text-blue-800! " : "border-transparent"
+                }`}
         >
             {name}
         </Link>

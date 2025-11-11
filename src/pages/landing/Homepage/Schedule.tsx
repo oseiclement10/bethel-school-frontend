@@ -1,4 +1,4 @@
-import timeImg from "../../../../assets/images/timebound.png";
+import timeImg from "@/assets/images/timebound.png";
 import { PillCaption } from "../components/PillCaption";
 import { LuCalendarClock } from "react-icons/lu";
 
