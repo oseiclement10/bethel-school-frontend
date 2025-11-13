@@ -1,7 +1,7 @@
 import { FaHome } from "react-icons/fa";
 import Header from "../components/Header";
 import { IoArrowForwardOutline } from "react-icons/io5";
-import { Link } from "@inertiajs/react";
+import { Link } from "react-router";
 
 const FirstScreen = () => {
     return (
@@ -21,14 +21,14 @@ const FirstScreen = () => {
                     </p>
                     <div className="flex items-center ">
                         <Link
-                            href={route("admission.new")}
-                            className="flex items-center px-4 py-[6px] mr-4 text-white rounded-sm bg-blue-600 hover:bg-blue-800 active:opacity-10"
+                            to="/apply/new"
+                            className="flex items-center px-4 py-1.5 mr-4 text-white rounded-sm bg-blue-600 hover:bg-blue-800 active:opacity-10"
                         >
                             Apply Now <IoArrowForwardOutline className="ml-1" />{" "}
                         </Link>
                         <Link
-                            href="/portal/login"
-                            className="flex items-center px-4 py-[6px] bg-white  rounded-sm text-blue-600 hover:bg-blue-100 "
+                            to="/portal/login"
+                            className="flex items-center px-4 py-1.5 bg-white  rounded-sm text-blue-600 hover:bg-blue-100 "
                         >
                             Log in to portal <FaHome className="ml-1" />{" "}
                         </Link>

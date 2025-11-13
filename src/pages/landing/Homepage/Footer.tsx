@@ -48,7 +48,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-linear-to-br from-blue-900 via-blue-950 to-indigo-950">
+        <footer className="bg-blue-950">
             {/* Main Footer Content */}
             <section className="py-16 lg:py-20">
                 <div className="px-4 mx-auto max-w-[90%] sm:px-6 lg:px-8">
@@ -234,8 +234,10 @@ const Footer = () => {
                             <p className="text-sm text-blue-300">
                                 Crafted with ❤️ by{" "}
                                 <a 
-                                    href="#" 
+                                    href="https://wa.me/233200039147" 
                                     className="font-semibold text-blue-100 hover:text-white transition-colors"
+                                    target="_blank"
+                                    rel="noopener"
                                 >
                                     OAC TechHub
                                 </a>

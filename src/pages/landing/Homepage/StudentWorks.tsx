@@ -120,7 +120,7 @@ const StudentWorksSection: React.FC = () => {
 
 
     return (
-        <section className="relative bg-linear-to-b from-blue-50 to-blue-100 pt-16 pb-32">
+        <section className="relative bg-blue-50/70 pt-16 pb-32">
 
 
             <div className="relative max-w-[90%] xl:max-w-7xl mx-auto px-6 md:px-8">

@@ -1,8 +1,8 @@
-import happyGuy from "../../../../assets/images/benkorClean.png";
+import happyGuy from "@/assets/images/team/benkorClean.png";
 
 const Statistics = () => {
     return (
-        <section className="pb-10 bg-blue-800 rounded-md lg:pb-0">
+        <section className="pb-10 bg-blue-800 font-poppins rounded-md lg:pb-0">
             <section className="flex flex-col  lg:items-center w-[90%] lg:px-10 mx-auto mt-10 lg:w-5/6 lg:flex-row ">
                 <div
                     className="lg:w-1/4 mr-10 w-[90%] -mt-20 lg:mt-0"
@@ -52,7 +52,7 @@ type StatCardProps = {
 };
 const StatCard = ({ title, description, aos }: StatCardProps) => {
     return (
-        <div className="px-6 pt-3 pb-6 bg-white shadow-md rounded-xl h-fit" data-aos={aos}>
+        <div className="px-6 pt-3 pb-6 bg-white shadow-md font-poppins rounded-xl h-fit" data-aos={aos}>
             <h2 className="text-2xl font-bold text-center text-amber-600">
                 {title}
             </h2>

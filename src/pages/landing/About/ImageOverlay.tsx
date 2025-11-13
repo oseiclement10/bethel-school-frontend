@@ -1,7 +1,7 @@
-import imgOne from "../../../../assets/images/fashion2.jpg";
-import imgTwo from "../../../../assets/images/graduate.jpg";
-import imgThree from "../../../../assets/images/customer-service.jpg";
-import imgFour from "../../../../assets/images/ladiessowing.jpg";
+import imgOne from "@/assets/images/fashion2.jpg";
+import imgTwo from "@/assets/images/graduate.jpg";
+import imgThree from "@/assets/images/customer-service.jpg";
+import imgFour from "@/assets/images/ladiessowing.jpg";
 
 const ImageOverlay = () => {
     return (

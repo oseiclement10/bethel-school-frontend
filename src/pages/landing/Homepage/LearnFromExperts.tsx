@@ -13,8 +13,7 @@ const LearnFromExperts = () => {
                     <h4 className="text-3xl mb-2  font-vibes tracking-wide italic  text-blue-500 ">Expert Guidance</h4>
                     <h1 className="text-4xl mb-4 font-dmsans font-medium">Learn From Experts within the Fashion Business</h1>
                     <p className="mb-6">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed quaer
-                        Lorem ipsum dolor sit amet consectetur.
+                        Learn from experienced industry professionals who bring real-world expertise and a passion for teaching into every class.
                     </p>
                     <button className="px-6 py-2 bg-blue-600 text-white ">Apply Now</button>
 

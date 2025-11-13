@@ -3,21 +3,23 @@ import ImageOverlay from "./ImageOverlay";
 import AFirstScreen from "./AFirstScreen";
 import OurStory from "./OurStory";
 import OurTeam from "./OurTeam";
-import { Head } from "@inertiajs/react";
+import Schedule from "../Homepage/Schedule";
+
 
 const AboutSchool = () => {
   return (
     <>
-    <Head title="About Us" />
-    <section className="relative ">
-      <AFirstScreen />
-      <ImageOverlay />
-      <OurStory />
-      <OurTeam />
-      <Footer />
-    </section>
+      <meta title="About Us" />
+      <section className="relative font-poppins ">
+        <AFirstScreen />
+        <ImageOverlay />
+        <OurStory />
+        <Schedule />
+        <OurTeam />
+        <Footer />
+      </section>
     </>
-    
+
   );
 };
 

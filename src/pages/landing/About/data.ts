@@ -1,6 +1,6 @@
-import ceo from "../../../../assets/images/team/MrsJoanaOfori.jpg";
-import ben from "../../../../assets/images/team/Benkors.jpg";
-import ben2 from "../../../../assets/images/team/amoasi-benjamin.jpg";
+import ceo from "@/assets/images/team/MrsJoanaOfori.jpg";
+import ben from "@/assets/images/team/Benkors.jpg";
+import ben2 from "@/assets/images/team/amoasi-benjamin.jpg";
 
 export type TeamProps = {
     title: string;

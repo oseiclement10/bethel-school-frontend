@@ -1,20 +1,21 @@
-import {  Link } from "react-router";
+import { Link } from "react-router";
 import Header from "../components/Header";
 import { PillCaption } from "../components/PillCaption";
 import Footer from "../Homepage/Footer";
 import { type CourseProps, coursesData } from "./data";
-import { IoBookOutline } from "react-icons/io5";
+import { IoTimeOutline, IoStarOutline, IoChevronForward } from "react-icons/io5";
+import { FiUsers, FiArrowRight } from "react-icons/fi";
 
 const Courses = () => {
     return (
-        <section>
-           <meta>
-            <title> Courses </title>
-           </meta>
+        <section className="font-poppins bg-gray-50 min-h-screen">
+            <meta title="Courses" />
+
             <section className="relative bg-blue-600 ">
                 <Header />
             </section>
 
+            {/* Hero Section */}
             <section className="pt-32 pb-8 lg:pt-16">
                 <PillCaption title="courses" />
                 <div
@@ -32,24 +33,32 @@ const Courses = () => {
                 </p>
             </section>
 
-            <section data-aos="zoom-in" className="grid w-[92%] lg:grid-cols-3 gap-8 pb-24 mx-auto border-b lg:w-5/6">
-                {coursesData.map((elem) => (
-                    <CourseCard
-                        imgSrc={elem.imgSrc || ""}
-                        title={elem.title}
-                        slug={elem.slug}
-                        shortDescription={elem.shortDescription}
-                        imgStyling={elem.imgStyling}
-                        containerStyling={elem.containerStyling}
-                        key={elem.title}
-                    />
-                ))}
+            {/* Courses Grid */}
+            <section className="py-16 bg-white">
+                <div className="container mx-auto px-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                        {coursesData.map((course, index) => (
+                            <CourseCard
+                                {...course}
+                                key={course.title}
+                                index={index}
+                            />
+                        ))}
+                    </div>
+                </div>
             </section>
 
-            <section className="pt-10 mx-auto mb-20 space-y-24 lg:space-y-12 lg:w-5/6">
-                {coursesData?.map((elem) => (
-                    <CourseDetail course={elem} key={elem.title} />
-                ))}
+            {/* Course Details */}
+            <section className="py-16 bg-gray-50">
+                <div className="container mx-auto px-4">
+                    {coursesData?.map((course, index) => (
+                        <CourseDetail
+                            course={course}
+                            key={course.title}
+                            index={index}
+                        />
+                    ))}
+                </div>
             </section>
 
             <Footer />
@@ -64,53 +73,136 @@ const CourseCard = ({
     shortDescription,
     imgStyling,
     containerStyling,
-}: CourseProps) => {
+    duration,
+    level,
+    index
+}: CourseProps & { index: number }) => {
     return (
-        <div className="p-4 border rounded-lg">
-            <div className={`${containerStyling}`}>
+        <div
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
+        >
+            <div className={`relative overflow-hidden ${containerStyling}`}>
                 <img
                     src={imgSrc}
                     alt={title}
-                    className={`rounded-sm h-[200px] w-full  ${imgStyling}`}
+                    className={`w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110 ${imgStyling}`}
                 />
+                <div className="absolute top-4 right-4">
+                    <span className="bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-medium">
+                        {level}
+                    </span>
+                </div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            <div className="flex flex-col justify-between">
-                <div className="py-3 overflow-hidden ">
-                    <h3 className="mb-1 font-semibold">{title}</h3>
-                    <p className="text-slate-700">{shortDescription}</p>
+            <div className="p-6">
+                <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <IoTimeOutline className="mr-1" />
+                    <span className="mr-4">{duration}</span>
+                    <FiUsers className="mr-1" />
+                    <span>{level}</span>
                 </div>
-                <div className="flex items-end justify-end ">
+
+                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                    {title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                    {shortDescription}
+                </p>
+
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <Link
-                        to={"/courses#" + slug}
-                        className="bg-blue-600 flex items-center text-white text-sm px-3 py-1 rounded-lg w-fit hover:bg-blue-800 active:opacity-30"
+                        to={`#`}
+                        onClick={(e) => {
+                            e.preventDefault();
+                            const section = document.getElementById(slug);
+                            if (section) {
+                                section.scrollIntoView({ behavior: "smooth", block: "start" });
+                            }
+                            window.history.replaceState(null, "", `/courses#${slug}`);
+                        }}
+                        className="group/btn flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors"
                     >
-                        Read More <IoBookOutline className="ml-1" />
+                        Read More
+                        <IoChevronForward className="ml-1 transform group-hover/btn:translate-x-1 transition-transform" />
                     </Link>
+                    <div className="flex items-center text-amber-500">
+                        <IoStarOutline className="fill-current" />
+                        <span className="ml-1 text-sm text-gray-600">4.8</span>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-const CourseDetail = ({ course }: { course: CourseProps }) => {
+const CourseDetail = ({ course, index }: { course: CourseProps; index: number }) => {
     return (
-        <div className="p-10 bg-blue-100" id={course.slug} data-aos="zoom-in">
-            <h3 className="mb-5 text-2xl font-semibold text-center text-blue-900 lg:text-start">
-                {course?.title}
-            </h3>
-            <div className="grid lg:grid-cols-4 ">
-                <img
-                    src={course?.imgSrc}
-                    alt={course?.imgSrc}
-                    className="max-h-[400px]"
-                />
-                <div className="mt-6 lg:col-span-2 lg:mt-0 lg:ml-12">
-                    <p className="mb-2 text-lg font-semibold">
-                        {course?.shortDescription}
+        <div
+            id={course.slug}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            className="bg-white rounded-3xl shadow-xl overflow-hidden mb-12 last:mb-0 border border-gray-200"
+        >
+            <div className="grid lg:grid-cols-12 gap-8">
+                {/* Image Section */}
+                <div className="lg:col-span-5 relative">
+                    <img
+                        src={course.imgSrc}
+                        alt={course.title}
+                        className="w-full h-64 lg:h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-r from-blue-600/20 to-purple-600/20" />
+                </div>
+
+                {/* Content Section */}
+                <div className="lg:col-span-7 p-8 lg:p-12">
+                    <div className="flex items-center gap-4 mb-6">
+                        <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
+                            {course.duration}
+                        </span>
+                        <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">
+                            {course.level}
+                        </span>
+                    </div>
+
+                    <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                        {course.title}
+                    </h3>
+
+                    <p className="text-lg text-gray-700 font-semibold mb-6 leading-relaxed">
+                        {course.shortDescription}
                     </p>
 
-                    <p className="text-slate-800"> {course?.longDescription}</p>
+                    <p className="text-gray-600 leading-relaxed mb-8">
+                        {course.longDescription}
+                    </p>
+
+                    {/* Course Features */}
+                    {course.features && (
+                        <div className="mb-8">
+                            <h4 className="text-xl font-bold text-gray-900 mb-4">What You'll Learn</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {course.features.map((feature, idx) => (
+                                    <div key={idx} className="flex items-center text-gray-700">
+                                        <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+                                        {feature}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <button className="bg-linear-to-r cursor-pointer from-blue-600 to-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl flex items-center justify-center">
+                            Enroll Now
+                            <FiArrowRight className="ml-2" />
+                        </button>
+
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { type HtmlHTMLAttributes } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 export const links = [
     {
@@ -27,6 +27,7 @@ const SchoolNav = ({ ...props }: HtmlHTMLAttributes<HTMLDivElement>) => {
                 <NavLinkWrapper
                     key={elem.path}
                     name={elem.name}
+
                     path={elem.path}
                 />
             ))}
@@ -37,12 +38,13 @@ const SchoolNav = ({ ...props }: HtmlHTMLAttributes<HTMLDivElement>) => {
 export type NavLinkWrapperProps = {
     name: string;
     path: string;
-    url?: string;
 };
 
-export const NavLinkWrapper = ({ name, path, url }: NavLinkWrapperProps) => {
-    
-    const isActive = url == path;
+export const NavLinkWrapper = ({ name, path }: NavLinkWrapperProps) => {
+
+    const { pathname } = useLocation();
+
+    const isActive = pathname == path;
     return (
         <Link
             to={path}

@@ -1,4 +1,4 @@
-import graduatingStudent from "@/assets/images/graduating-student-female.jpg"
+import graduatingStudent from "@/assets/images/bfs-students.jpg"
 
 export default function FashionSchoolStats() {
   const stats = [
@@ -40,7 +40,7 @@ export default function FashionSchoolStats() {
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
             style={{ backgroundImage: `url(${graduatingStudent})` }}
           >
-            <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
           </div>
 
           {/* Content */}

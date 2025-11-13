@@ -1,24 +1,28 @@
-import headerImg from "../../../assets/images/class-pcs.png";
-import admissionIcon from "../../../assets/images/admission.png";
-import billsIcon from "../../../assets/images/bills.png";
-import profileIcon from "../../../assets/images/profile.png";
-import Layout from "@/Layouts/Portal";
-import { Head, Link, usePage } from "@inertiajs/react";
+import headerImg from "@/assets/images/class-pcs.png";
+import admissionIcon from "@/assets/images/admission.png";
+import billsIcon from "@/assets/images/bills.png";
+import profileIcon from "@/assets/images/profile.png";
+import { Link } from "react-router";
 import { FaArrowRight } from "react-icons/fa";
-import { AuthUser } from "@/types/common";
+import { useAuthUser } from "@/contexts/AuthContext";
+
 
 const Dashboard = () => {
-    const { auth } = usePage<{ auth: AuthUser }>().props;
-   
+
+    const auth = useAuthUser();
+
+
     return (
-        <Layout>
-            <Head title="Dashboard" />
+        <>
+            <title>
+                Dashboard
+            </title>
             <section className="font-poppins lg:w-[94%] p-3 lg:p-10">
                 <header className="overflow-hidden bg-blue-800 rounded-lg mb-14 md:h-48">
                     <div className="grid md:grid-cols-2 w-[85%] mx-auto py-6 lg:py-2 lg:w-[93%] place-items-center">
                         <div className="text-white">
                             <h2 className="text-2xl font-semibold ">
-                                Welcome {auth.applicant.firstname} {auth.applicant.surname} ,
+                                Welcome {auth?.full_name} ,
                             </h2>
                             <div className="my-4" />
                             <p className="text-slate-100">
@@ -56,14 +60,14 @@ const Dashboard = () => {
                     />
                 </div>
             </section>
-        </Layout>
+        </>
     );
 };
 
 const DashCard = ({ href, label, img }: DashCardProps) => {
     return (
         <Link
-            href={href}
+            to={href}
             className="flex items-center justify-between bg-white border border-slate-300 p-7 rounded-xl hover:border-blue-300"
         >
             <h3 className="flex items-center font-semibold text-blue-800">
