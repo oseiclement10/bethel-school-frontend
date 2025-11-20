@@ -12,6 +12,8 @@ import measurementTheme from "@/assets/images/studentworks/runway3.jpg";
 import umbrellaTheme from "@/assets/images/studentworks/runway8.jpg";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router';
+import { FadeUp, FadeUpStagger } from '@/components/animations/fades';
+import ZoomIn from '@/components/animations/zoom';
 
 const StudentWorksSection: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -127,71 +129,77 @@ const StudentWorksSection: React.FC = () => {
             <div className="relative max-w-[90%] xl:max-w-7xl mx-auto px-6 md:px-8">
                 {/* Header */}
                 <div className="text-center mb-10">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 mb-6">
-                        <Award className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
-                            Student Excellence
-                        </span>
-                    </div>
+                    <FadeUp distance={50}>
+                        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 mb-6">
+                            <Award className="w-4 h-4 text-blue-600" />
+                            <span className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
+                                Student Excellence
+                            </span>
+                        </div>
 
-                    <h2 className="text-5xl md:text-6xl font-bold pb-1 mb-6 bg-linear-to-r from-gray-900 via-gray-800 to-gray-600 bg-clip-text text-transparent">
-                        Final Year
-                        <br />
-                        <span className="">Projects By Students</span>
-                    </h2>
+                        <h2 className="text-5xl md:text-6xl font-bold pb-1 mb-6 bg-linear-to-r from-gray-900 via-gray-800 to-gray-600 bg-clip-text text-transparent">
+                            Final Year
+                            <br />
+                            <span className="">Projects By Students</span>
+                        </h2>
 
-                    <p className="text-lg  text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Step into a gallery of fashion artistry — where each student redefines elegance,
-                        creativity, and identity through their unique vision.
-                    </p>
+                        <p className="text-lg  text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            Step into a gallery of fashion artistry — where each student redefines elegance,
+                            creativity, and identity through their unique vision.
+                        </p>
+                    </FadeUp>
+
                 </div>
 
                 {/* Featured Portrait */}
                 <PhotoProvider>
                     <div className="mb-24">
-                        <div className="group relative  max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
-                            <PhotoView src={studentWorks[0].img}>
-                                <img
-                                    src={studentWorks[0].img}
-                                    alt={studentWorks[0].title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
-                                />
+                        <ZoomIn>
+                            <div className="group relative  max-w-lg mx-auto rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
+                                <PhotoView src={studentWorks[0].img}>
+                                    <img
+                                        src={studentWorks[0].img}
+                                        alt={studentWorks[0].title}
+                                        className="w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                                    />
 
-                            </PhotoView>
-                            <div className="absolute pointer-events-none inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+                                </PhotoView>
+                                <div className="absolute pointer-events-none inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
-                            {/* Overlay Info */}
-                            <div className="absolute bottom-0 p-8">
-                                <div className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full mb-4">
-                                    <span className="text-white text-sm font-medium">✨ Featured Collection</span>
-                                </div>
-
-                                <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                                    {studentWorks[0].title}
-                                </h3>
-
-                                <p className="text-lg text-white/90 mb-4">
-                                    {studentWorks[0].category} • {studentWorks[0].awards}
-                                </p>
-
-                                <div className="flex items-center space-x-4 mb-6">
-
-                                    <div>
-                                        <p className="text-white font-semibold">{studentWorks[0].student}</p>
-                                        <p className="text-white/80 text-sm">Class of {studentWorks[0].year}</p>
+                                {/* Overlay Info */}
+                                <div className="absolute bottom-0 p-8">
+                                    <div className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full mb-4">
+                                        <span className="text-white text-sm font-medium">✨ Featured Collection</span>
                                     </div>
-                                </div>
 
-                                <button className="group/btn inline-flex items-center space-x-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition shadow-lg">
-                                    <span>Apply Now </span>
-                                    <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition" />
-                                </button>
+                                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                                        {studentWorks[0].title}
+                                    </h3>
+
+                                    <p className="text-lg text-white/90 mb-4">
+                                        {studentWorks[0].category} • {studentWorks[0].awards}
+                                    </p>
+
+                                    <div className="flex items-center space-x-4 mb-6">
+
+                                        <div>
+                                            <p className="text-white font-semibold">{studentWorks[0].student}</p>
+                                            <p className="text-white/80 text-sm">Class of {studentWorks[0].year}</p>
+                                        </div>
+                                    </div>
+
+                                    <button className="group/btn inline-flex items-center space-x-2 px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition shadow-lg">
+                                        <span>Apply Now </span>
+                                        <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition" />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                        </ZoomIn>
+
                     </div>
 
                     {/* Portrait Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <FadeUpStagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
                         {studentWorks.slice(1).map((work, idx) => (
                             <div
                                 key={idx}
@@ -250,7 +258,7 @@ const StudentWorksSection: React.FC = () => {
 
                             </div>
                         ))}
-                    </div>
+                    </FadeUpStagger>
                 </PhotoProvider>
 
 

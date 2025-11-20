@@ -1,3 +1,4 @@
+import { FadeUp } from "@/components/animations/fades";
 import useGetAdmissionFee from "@/hooks/use-get-admission-fee";
 import { formatMoney } from "@/utils/format-money";
 import { Spin } from "antd";
@@ -7,7 +8,7 @@ import { FaCheckCircle, FaClock, FaUserGraduate, FaBookOpen, FaStar } from "reac
 const Notice = () => {
     const { data, isLoading } = useGetAdmissionFee();
     return (
-        <>
+        <FadeUp>
             <section className="w-[90%] lg:w-4/6 mx-auto pt-16 pb-24 text-gray-800">
                 <h3 className="mb-10 text-3xl font-bold text-center border-b pb-2 w-5/6 mx-auto">
                     What You Need To Know Before You Apply
@@ -131,7 +132,7 @@ const Notice = () => {
             </section>
 
 
-        </>
+        </FadeUp>
     );
 };
 

@@ -1,4 +1,5 @@
 import graduatingStudent from "@/assets/images/bfs-students.jpg"
+import { FadeUpStagger } from "@/components/animations/fades";
 
 export default function FashionSchoolStats() {
   const stats = [
@@ -12,7 +13,7 @@ export default function FashionSchoolStats() {
     <section className="bg-linear-to-b from-neutral-50 to-white py-20 md:px-4">
       <div className="md:max-w-[90%] mx-auto">
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <FadeUpStagger className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <div 
               key={index}
@@ -31,7 +32,7 @@ export default function FashionSchoolStats() {
               </div>
             </div>
           ))}
-        </div>
+        </FadeUpStagger>
 
         {/* CTA Image Section */}
         <div className="relative h-[600px] md:h-[500px] rounded-sm overflow-hidden group">

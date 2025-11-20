@@ -5,6 +5,7 @@ import Footer from "../Homepage/Footer";
 import { type CourseProps, coursesData } from "./data";
 import { IoTimeOutline, IoStarOutline, IoChevronForward } from "react-icons/io5";
 import { FiUsers, FiArrowRight } from "react-icons/fi";
+import { FadeUp } from "@/components/animations/fades";
 
 const Courses = () => {
     return (
@@ -16,36 +17,41 @@ const Courses = () => {
             </section>
 
             {/* Hero Section */}
-            <section className="pt-32 pb-8 lg:pt-16">
-                <PillCaption title="courses" />
-                <div
-                    data-aos="fade-up"
-                    className="text-4xl px-2 font-bold text-center"
-                >
-                    <h3> The Perfect Courses</h3>
-                    <h3>For your Fashion & Design Career</h3>
-                </div>
-                <p data-aos="fade-up" className="px-2 pt-6 text-center lg:px-0 text-slate-700 lg:w-4/6 lg:mx-auto">
-                    Explore perfectly curated courses designed to help you excel
-                    in the fashion industry. All these courses are taught by
-                    experts who have insight on how to apply these in the
-                    industry.
-                </p>
-            </section>
+            <FadeUp>
+                <section className="pt-32 pb-8 lg:pt-16">
+                    <PillCaption title="courses" />
+                    <div
+                        className="text-4xl px-2 font-bold text-center"
+                    >
+                        <h3> The Perfect Courses</h3>
+                        <h3>For your Fashion & Design Career</h3>
+                    </div>
+                    <p className="px-2 pt-6 text-center lg:px-0 text-slate-700 lg:w-4/6 lg:mx-auto">
+                        Explore perfectly curated courses designed to help you excel
+                        in the fashion industry. All these courses are taught by
+                        experts who have insight on how to apply these in the
+                        industry.
+                    </p>
+                </section>
+            </FadeUp>
+
 
             {/* Courses Grid */}
             <section className="py-16 bg-white">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                        {coursesData.map((course, index) => (
-                            <CourseCard
-                                {...course}
-                                key={course.title}
-                                index={index}
-                            />
-                        ))}
+                <FadeUp>
+                    <div className="container mx-auto px-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                            {coursesData.map((course, index) => (
+                                <CourseCard
+                                    {...course}
+                                    key={course.title}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                </FadeUp>
+
             </section>
 
             {/* Course Details */}
@@ -79,7 +85,7 @@ const CourseCard = ({
 }: CourseProps & { index: number }) => {
     return (
         <div
-            data-aos="fade-up"
+
             data-aos-delay={index * 100}
             className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden border border-gray-100"
         >
@@ -142,7 +148,7 @@ const CourseDetail = ({ course, index }: { course: CourseProps; index: number })
     return (
         <div
             id={course.slug}
-            data-aos="fade-up"
+
             data-aos-delay={index * 100}
             className="bg-white rounded-3xl shadow-xl overflow-hidden mb-12 last:mb-0 border border-gray-200"
         >
@@ -160,7 +166,7 @@ const CourseDetail = ({ course, index }: { course: CourseProps; index: number })
                 {/* Content Section */}
                 <div className="lg:col-span-7 p-8 lg:p-12">
                     <div className="flex items-center gap-4 mb-6">
-                       
+
                         <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">
                             {course.level}
                         </span>

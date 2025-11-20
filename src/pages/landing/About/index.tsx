@@ -6,6 +6,7 @@ import OurTeam from "./OurTeam";
 import Schedule from "../Homepage/Schedule";
 
 
+
 const AboutSchool = () => {
   return (
     <>

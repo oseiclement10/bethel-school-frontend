@@ -7,6 +7,7 @@ import lindaNyarko from "@/assets/images/graduates/lindanyarko.jpg"
 import miriamAcheampongKyerewaa from "@/assets/images/graduates/miriamacheampongkyerewaa.jpg"
 import roseNaayiri from "@/assets/images/graduates/rosenaayiri.jpg"
 import portiaOwusuwaa from "@/assets/images/studentworks/bridal-supreme.jpg"
+import { FadeUp } from '@/components/animations/fades';
 
 const TestimonialsSection: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -111,97 +112,103 @@ const TestimonialsSection: React.FC = () => {
         <section className="relative bg-white py-20 lg:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-100/80 backdrop-blur-sm rounded-full border border-blue-200 mb-6">
-                        <Star className="w-4 h-4 text-blue-600 fill-blue-600" />
-                        <span className="text-sm font-semibold text-blue-700 uppercase tracking-wider">
-                            Success Stories
-                        </span>
+                <FadeUp>
+                    <div className="text-center mb-16">
+                        <div className="inline-flex items-center space-x-2 px-4 py-2 bg-blue-100/80 backdrop-blur-sm rounded-full border border-blue-200 mb-6">
+                            <Star className="w-4 h-4 text-blue-600 fill-blue-600" />
+                            <span className="text-sm font-semibold text-blue-700 uppercase tracking-wider">
+                                Success Stories
+                            </span>
+                        </div>
+
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+                            Our Alumni
+                            <br />
+                            <span className="bg-linear-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
+                                Bethel School Of Fashion & Design
+                            </span>
+                        </h2>
+
+                        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            Hear from graduates who are now leading the fashion industry worldwide
+                        </p>
                     </div>
+                </FadeUp>
 
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                        Our Alumni
-                        <br />
-                        <span className="bg-linear-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
-                            Bethel School Of Fashion & Design
-                        </span>
-                    </h2>
-
-                    <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Hear from graduates who are now leading the fashion industry worldwide
-                    </p>
-                </div>
 
                 {/* Main Testimonial Display */}
-                <div className="relative mb-12">
-                    <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-6 md:p-8 lg:p-12">
-                        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center">
-                            {/* Image Section */}
-                            <div className="lg:col-span-1">
-                                <div className="relative">
-                                    {/* Quote Icon Background */}
-                                    <div className="absolute -top-4 -left-4 w-16 h-16 bg-linear-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg z-10">
-                                        <Quote className="w-6 h-6 text-white" />
+                <FadeUp>
+                    <div className="relative mb-12">
+                        <div className="bg-white rounded-2xl shadow-lg border border-blue-100 p-6 md:p-8 lg:p-12">
+                            <div className="grid lg:grid-cols-3 gap-8 lg:gap-12 items-center">
+                                {/* Image Section */}
+                                <div className="lg:col-span-1">
+                                    <div className="relative">
+                                        {/* Quote Icon Background */}
+                                        <div className="absolute -top-4 -left-4 w-16 h-16 bg-linear-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg z-10">
+                                            <Quote className="w-6 h-6 text-white" />
+                                        </div>
+
+                                        {/* Profile Image */}
+                                        <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white">
+                                            <img
+                                                src={testimonials[currentIndex].image}
+                                                alt={testimonials[currentIndex].name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+
+
                                     </div>
-
-                                    {/* Profile Image */}
-                                    <div className="relative aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white">
-                                        <img
-                                            src={testimonials[currentIndex].image}
-                                            alt={testimonials[currentIndex].name}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-
-
-                                </div>
-                            </div>
-
-                            {/* Content Section */}
-                            <div className="lg:col-span-2 space-y-6">
-                                {/* Stars */}
-                                <div className="flex space-x-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                                    ))}
                                 </div>
 
-                                {/* Quote */}
-                                <blockquote className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-light">
-                                    "{testimonials[currentIndex].quote}"
-                                </blockquote>
+                                {/* Content Section */}
+                                <div className="lg:col-span-2 space-y-6">
+                                    {/* Stars */}
+                                    <div className="flex space-x-1">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                                        ))}
+                                    </div>
 
-                                {/* Author Info */}
-                                <div className="pt-6 border-t border-blue-100">
-                                    <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
-                                        {testimonials[currentIndex].name}
-                                    </h4>
-                                    <p className="text-blue-600 font-medium mb-1">
-                                        {testimonials[currentIndex].year}
-                                    </p>
+                                    {/* Quote */}
+                                    <blockquote className="text-lg md:text-xl lg:text-2xl text-gray-700 leading-relaxed font-light">
+                                        "{testimonials[currentIndex].quote}"
+                                    </blockquote>
 
+                                    {/* Author Info */}
+                                    <div className="pt-6 border-t border-blue-100">
+                                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
+                                            {testimonials[currentIndex].name}
+                                        </h4>
+                                        <p className="text-blue-600 font-medium mb-1">
+                                            {testimonials[currentIndex].year}
+                                        </p>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Navigation Arrows */}
+                        <button
+                            onClick={goToPrev}
+                            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg border border-blue-200 hover:bg-blue-50 rounded-full flex items-center justify-center transition-all duration-200 group"
+                            aria-label="Previous testimonial"
+                        >
+                            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:scale-110 transition-transform" />
+                        </button>
+
+                        <button
+                            onClick={goToNext}
+                            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg border border-blue-200 hover:bg-blue-50 rounded-full flex items-center justify-center transition-all duration-200 group"
+                            aria-label="Next testimonial"
+                        >
+                            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:scale-110 transition-transform" />
+                        </button>
                     </div>
+                </FadeUp>
 
-                    {/* Navigation Arrows */}
-                    <button
-                        onClick={goToPrev}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg border border-blue-200 hover:bg-blue-50 rounded-full flex items-center justify-center transition-all duration-200 group"
-                        aria-label="Previous testimonial"
-                    >
-                        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:scale-110 transition-transform" />
-                    </button>
-
-                    <button
-                        onClick={goToNext}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-6 w-10 h-10 md:w-12 md:h-12 bg-white shadow-lg border border-blue-200 hover:bg-blue-50 rounded-full flex items-center justify-center transition-all duration-200 group"
-                        aria-label="Next testimonial"
-                    >
-                        <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-blue-600 group-hover:scale-110 transition-transform" />
-                    </button>
-                </div>
 
                 {/* Thumbnail Navigation */}
                 <div className="flex justify-center items-center space-x-3 md:space-x-4 mb-8">
@@ -256,7 +263,7 @@ const TestimonialsSection: React.FC = () => {
                             <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors duration-200 shadow-lg">
                                 Apply Now
                             </button>
-                           
+
                         </div>
                     </div>
                 </div>
