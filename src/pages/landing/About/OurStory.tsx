@@ -2,13 +2,13 @@ import { PillCaption } from "../components/PillCaption";
 
 const OurStory = () => {
   return (
-    <section className="mx-auto text-justify -translate-y-16 curved-base ">
+    <section className="mx-auto  -translate-y-16 curved-base ">
       
       <div className="w-full mb-10 h-[90px] lg:h-[150px]" />
       <h3 className="mb-2 text-4xl font-semibold text-center ">Our Story</h3>
       <PillCaption title="how it started" />
 
-      <article className="w-[90%] mx-auto mt-10 space-y-10 text-lg text-justify lg:w-4/6 text-slate-800 ">
+      <article className="w-[90%] mx-auto mt-10 space-y-10 text-lg  lg:w-4/6 text-slate-800 ">
         <p>
           Bethel School of Fashion and Design is situated in Atonsu-Agogo,
           within the Asokwa Municipality of the Ashanti Region, Ghana. The

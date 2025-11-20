@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const ApplicationProcess = () => {
     return (
-        <section className="pt-4 pb-20 bg-blue-50/70 lg:pt-28 ">
+        <section className="pt-16 pb-20 bg-blue-50/70 lg:pt-28 ">
             <section className="">
                 <div className="w-[80%] mx-auto mb-4 lg:w-5/6">
                     <h3 className="mb-2 text-5xl font-semibold lg:w-3/6 ">

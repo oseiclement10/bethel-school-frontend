@@ -5,12 +5,12 @@ export default function FashionSchoolStats() {
     { number: '1000+', label: 'Students Enrolled', sublabel: 'Since 1999' },
     { number: '26+', label: 'Years of Excellence', sublabel: 'Industry Leader' },
     { number: '99%', label: 'Success Rate', sublabel: 'Career Placement' },
-    { number: '150+', label: 'Industry Partners', sublabel: 'Global Network' }
+    { number: '30+', label: 'Industry Partners', sublabel: 'Global Network' }
   ];
 
   return (
-    <section className="bg-linear-to-b from-neutral-50 to-white py-20 px-4">
-      <div className="max-w-[90%] mx-auto">
+    <section className="bg-linear-to-b from-neutral-50 to-white py-20 md:px-4">
+      <div className="md:max-w-[90%] mx-auto">
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
@@ -34,13 +34,13 @@ export default function FashionSchoolStats() {
         </div>
 
         {/* CTA Image Section */}
-        <div className="relative h-96 md:h-[500px] rounded-sm overflow-hidden group">
+        <div className="relative h-[600px] md:h-[500px] rounded-sm overflow-hidden group">
           {/* Background Image with Overlay */}
           <div 
             className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
             style={{ backgroundImage: `url(${graduatingStudent})` }}
           >
-            <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/30 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-r from-black/60 via-black/50 md:via-black/30 to-transparent"></div>
           </div>
 
           {/* Content */}

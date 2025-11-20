@@ -256,9 +256,7 @@ const TestimonialsSection: React.FC = () => {
                             <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-xl hover:bg-blue-50 transition-colors duration-200 shadow-lg">
                                 Apply Now
                             </button>
-                            <button className="px-8 py-4 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 backdrop-blur-sm transition-colors duration-200 border border-white/20">
-                                Schedule Tour
-                            </button>
+                           
                         </div>
                     </div>
                 </div>

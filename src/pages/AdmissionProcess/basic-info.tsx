@@ -164,7 +164,7 @@ const AdmissionApplicationForm = ({ onSucess, onBack }: AdmissionApplicationForm
 
             <div
             >
-                <FormConfig>
+                <FormConfig >
                     {admissionData ?
                         <AdmissionDataTile onClear={() => resetAdmission()} />
                         : null

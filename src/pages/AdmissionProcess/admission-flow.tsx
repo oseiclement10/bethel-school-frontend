@@ -32,10 +32,10 @@ const AdmissionFlow = () => {
 
 
     return (
-        <section className="min-h-dvh p-10 bg-slate-50/80">
+        <section className="min-h-dvh px-3 py-5  md:px-10 md:py-10  bg-slate-50/80">
             <div id="anchor" ref={anchorRef} />
             <div className="max-w-7xl mx-auto">
-                <div className="h-26 mb-8 flex flex-col items-center justify-center overflow-hidden relative rounded-2xl">
+                <div className="h-26 mt-20 md:mt-0 mb-8 flex flex-col items-center justify-center overflow-hidden relative rounded-2xl">
                     <img src={admissionsImg} alt="graduations" className="absolute  cover " />
                     <div className="absolute inset-0 bg-black/50" />
                     <div className="text-white text-center relative">
@@ -55,7 +55,7 @@ const AdmissionFlow = () => {
                         </div>
                     </div>
 
-                    <div className="lg:col-span-4 p-6 bg-white border border-gray-200/80 rounded-xl ">
+                    <div className="lg:col-span-4 px-1.5 md:px-6 py-6  bg-white border border-gray-200/80 rounded-xl ">
                         <div className="min-h-[70vh]">
                             {step === 1 && <AdmissionApplicationForm
                                 onSucess={(resp) => { setStep(2); setAdmission(resp) }}

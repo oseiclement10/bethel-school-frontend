@@ -11,6 +11,7 @@ import graphicRunway from "@/assets/images/studentworks/runway4.jpg";
 import measurementTheme from "@/assets/images/studentworks/runway3.jpg";
 import umbrellaTheme from "@/assets/images/studentworks/runway8.jpg";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { Link } from 'react-router';
 
 const StudentWorksSection: React.FC = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -215,9 +216,9 @@ const StudentWorksSection: React.FC = () => {
                                                 }`}
                                         >
                                             <div className="absolute bottom-4 pointer-events-auto left-4 right-4 flex justify-between items-center">
-                                                <button className="px-4 py-2 cursor-pointer bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-100 transition">
+                                                <Link to={"/apply"} className="px-4 py-2 cursor-pointer bg-white text-black text-sm font-semibold rounded-full hover:bg-gray-100 transition">
                                                     Enroll In Class
-                                                </button>
+                                                </Link>
 
                                             </div>
                                         </div>

@@ -15,7 +15,7 @@ const FirstScreen = () => {
                     <h3 className="text-5xl font-semibold text-white">
                         Applications
                     </h3>
-                    <p className="mb-6 text-slate-100">
+                    <p className="mb-6 px-2 md:px-0 text-slate-100">
                         Begin Your Fashion Journey with Bethel School of Fashion
                         and Design
                     </p>

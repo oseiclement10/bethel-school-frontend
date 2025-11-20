@@ -10,7 +10,7 @@ const FirstScreen = () => {
         <div className="absolute inset-0 w-full bg-black/60" />
         <div data-aos="zoom-in" className="relative text-center">
           <h3   className="text-5xl font-semibold text-white">Contact Us</h3>
-          <p className="text-slate-100">
+          <p className="text-slate-100 px-2 md:px-0">
             Find our contact phone, email and adress below. Customer care is our
             priority
           </p>

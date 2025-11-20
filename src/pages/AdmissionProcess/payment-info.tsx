@@ -111,7 +111,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ onSuccess, onGoBack }) => {
                 {/* Payment Methods */}
                 <div className="space-y-3">
                     <h3 className="text-sm font-semibold text-gray-700">Available Payment Methods</h3>
-                    <div className="grid grid-cols-3 gap-3">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {['Mobile Money', 'Visa/Mastercard', 'Bank Transfer'].map((method) => (
                             <div key={method} className="bg-gray-50 rounded-lg p-3 text-center">
                                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2">

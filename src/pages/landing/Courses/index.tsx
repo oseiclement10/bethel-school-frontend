@@ -20,7 +20,7 @@ const Courses = () => {
                 <PillCaption title="courses" />
                 <div
                     data-aos="fade-up"
-                    className="text-4xl font-bold text-center"
+                    className="text-4xl px-2 font-bold text-center"
                 >
                     <h3> The Perfect Courses</h3>
                     <h3>For your Fashion & Design Career</h3>
@@ -160,9 +160,7 @@ const CourseDetail = ({ course, index }: { course: CourseProps; index: number })
                 {/* Content Section */}
                 <div className="lg:col-span-7 p-8 lg:p-12">
                     <div className="flex items-center gap-4 mb-6">
-                        <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium">
-                            {course.duration}
-                        </span>
+                       
                         <span className="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm font-medium">
                             {course.level}
                         </span>
@@ -197,10 +195,10 @@ const CourseDetail = ({ course, index }: { course: CourseProps; index: number })
 
                     {/* Action Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <button className="bg-linear-to-r cursor-pointer from-blue-600 to-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl flex items-center justify-center">
+                        <Link to={"/apply"} className="bg-linear-to-r cursor-pointer from-blue-600 to-blue-800 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl flex items-center justify-center">
                             Enroll Now
                             <FiArrowRight className="ml-2" />
-                        </button>
+                        </Link>
 
                     </div>
                 </div>
