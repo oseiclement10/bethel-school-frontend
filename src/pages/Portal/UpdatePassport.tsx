@@ -1,111 +1,116 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import ThemeButton from "@/Components/ThemeButton";
-import { useForm } from "@inertiajs/react";
-import { Button, notification, UploadFile } from "antd";
-import { OverlayProps } from "@/types/common";
-import { Applicant } from "@/types/admission";
-import FieldGroup from "@/Components/Form/FieldGroup";
-import UploadImage, { setupImageForDisplay } from "@/Components/ImageUpload";
+import React, { useEffect, useState } from "react";
+import { Form, Input, Button, notification, type UploadFile } from "antd";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { postWithFile } from "@/services/apiService";
+import FormErrorAlert from "@/components/crud/form-error-alert";
+import { parseApiError } from "@/utils/parse-api-errors";
+import type { RequestError } from "@/@types/error";
+import { FormHeader } from "@/components/crud/form-config";
+import UploadImage from "@/components/crud/image-upload";
+import { queryKeys } from "@/lib/query-keys";
 
-type UpdateProfileProps = OverlayProps<Applicant> & {
+interface UpdatePassportProps {
+    data: any;
+    closeModal: () => void;
     className?: string;
-};
+}
 
-export default function UpdatePassport({
-    className = "",
+const UpdatePassport: React.FC<UpdatePassportProps> = ({
     data: applicant,
     closeModal,
-}: UpdateProfileProps) {
-    const { data, setData, errors, processing, post, transform, reset } =
-        useForm({
-            _method: "put",
-            passport:
-                applicant?.passport ??
-                (undefined as unknown as UploadFile<any>),
-            current_password: "",
-        });
+    className = "",
+}) => {
 
-    transform((data) => {
-        if (typeof data.passport === "object") {
-            data.passport = data.passport?.originFileObj as UploadFile;
-        }
-        return data;
+    const queryClient = useQueryClient();
+
+    const [form] = Form.useForm();
+    const [showError, setShowError] = useState(false);
+    const [passportImg, setPassportImg] = useState<UploadFile[]>([]);
+
+    const { mutate, isPending, error } = useMutation({
+        mutationFn: async (formValues: object) => postWithFile("portal/update-passport", formValues),
+        onSuccess: () => {
+            notification.success({
+                message: "Passport Picture Updated successfully",
+            });
+            queryClient.invalidateQueries({ queryKey: [queryKeys.admissionDetails] });
+            form.resetFields();
+            closeModal();
+        },
+        onError: () => setShowError(true),
     });
 
-    const handleSubmit = (e: React.SyntheticEvent) => {
-        e.preventDefault();
-        post(route("portal.profile.update-passport", applicant?.id), {
-            forceFormData: true,
-            onSuccess: () => {
-                reset();
-                closeModal();
-                notification.success({
-                    message: "Passport Picture Updated successfully",
-                });
-            },
-        });
+    const onFinish = (values: { passport: File | undefined }) => {
+
+        values.passport = passportImg[0].originFileObj;
+        mutate(values);
     };
+
+    useEffect(() => {
+        if (applicant?.passport) {
+            setPassportImg([{
+                uid: "1",
+                name: applicant?.passport,
+                status: "done",
+                url: applicant?.passport
+            }]);
+        }
+    }, []);
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Update Passport
-                </h2>
-            </header>
+            <FormHeader>
+                Update Passport
+            </FormHeader>
 
-            <form onSubmit={handleSubmit} className="mt-6 space-y-6">
-                <FieldGroup
-                    label="Passport Picture"
-                    name="passport"
-                    error={errors.passport}
-                >
-                    <UploadImage
-                        value={setupImageForDisplay(
-                            data.passport,
-                            "updateimage"
-                        )}
-                        updateValue={(val) => {
-                            setData("passport", val[0]);
-                        }}
-                    />
-                </FieldGroup>
+            <Form
+                form={form}
+                layout="vertical"
+                className="mt-6"
+                onFinish={onFinish}
+                onFieldsChange={() => setShowError(false)}
 
-                <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Enter Password"
-                    />
-
-                    <TextInput
-                        id="current_password"
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData("current_password", e.target.value)
-                        }
-                        type="password"
-                        required
-                        className="block w-full mt-1"
-                        autoComplete="current-password"
-                    />
-
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
-                    />
-                </div>
-
-                <div className="flex items-center gap-4">
-                    <div className="flex items-end space-x-3 jutify-end">
-                        <Button onClick={() => closeModal()}>Cancel</Button>
-                        <ThemeButton disabled={processing}>
-                            Save Changes{" "}
-                        </ThemeButton>
+            >
+                {/* Passport Upload */}
+                <Form.Item label="Passport" name="image" className="md:col-span-2">
+                    <div className="mb-5">
+                        <UploadImage
+                            value={passportImg}
+                            updateValue={(val) => setPassportImg(val)}
+                        />
                     </div>
+                </Form.Item>
+
+                {/* Password */}
+                <Form.Item
+                    label="Enter Password"
+                    name="password"
+                    rules={[
+                        { required: true, message: "Please enter your password" },
+                    ]}
+                >
+                    <Input.Password size="large" />
+                </Form.Item>
+
+                {showError && (
+                    <FormErrorAlert message={parseApiError(error as RequestError)} />
+                )}
+
+                <div className="flex justify-end space-x-3 mt-4">
+                    <Button onClick={closeModal}>Cancel</Button>
+
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        disabled={isPending}
+                        loading={isPending}
+                    >
+                        Save Changes
+                    </Button>
                 </div>
-            </form>
+            </Form>
         </section>
     );
-}
+};
+
+export default UpdatePassport;

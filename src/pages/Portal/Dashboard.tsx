@@ -5,19 +5,32 @@ import profileIcon from "@/assets/images/profile.png";
 import { Link } from "react-router";
 import { FaArrowRight } from "react-icons/fa";
 import { useAuthUser } from "@/contexts/AuthContext";
+import useQueryFetch from "@/hooks/use-query-fetch";
+import { getHelper } from "@/services/apiService";
+import { queryKeys } from "@/lib/query-keys";
+import type { AdmissionApplication } from "@/@types/entities";
+import type { RequestError } from "@/@types/error";
+import { SpinLoad } from "@/components/crud/loading";
+import { ApplicationNotFoundCard } from "./ApplicationNotFound";
+import { AdmissionStatus } from "./AdmissionStatus";
 
 
 const Dashboard = () => {
 
     const auth = useAuthUser();
 
+    const { data, isLoading } = useQueryFetch<AdmissionApplication, RequestError>({
+        queryFn: () => getHelper("portal/admission/details"),
+        title: "Admission Details",
+        queryKeys: [queryKeys.admissionDetails]
+    })
 
     return (
         <>
             <title>
                 Dashboard
             </title>
-            <section className="font-poppins lg:w-[94%] p-3 lg:p-10">
+            <section className="font-poppins  p-3 lg:p-10">
                 <header className="overflow-hidden bg-blue-800 rounded-lg mb-14 md:h-48">
                     <div className="grid md:grid-cols-2 w-[85%] mx-auto py-6 lg:py-2 lg:w-[93%] place-items-center">
                         <div className="text-white">
@@ -42,23 +55,33 @@ const Dashboard = () => {
                     </div>
                 </header>
 
-                <div className="grid gap-4 md:gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
-                    <DashCard
-                        href="/portal/admission"
-                        label="Admission Status"
-                        img={admissionIcon}
-                    />
-                    <DashCard
-                        href="/portal/fees"
-                        label="Fees"
-                        img={billsIcon}
-                    />
-                    <DashCard
-                        href="/portal/profile"
-                        label="Profile"
-                        img={profileIcon}
-                    />
-                </div>
+                {isLoading ? <SpinLoad caption="Application Details" message="loading application details " /> : !data ? <ApplicationNotFoundCard /> : (
+                    <div className="grid gap-4 md:gap-8 lg:gap-12 md:grid-cols-2 lg:grid-cols-3">
+
+                        <div className="lg:col-span-3">
+                            <div className=" bg-white border border-slate-300 p-7 rounded-xl hover:border-blue-300">
+
+                                <img src={admissionIcon} className="object-contain w-10 ml-auto h-10" alt="" />
+
+                                <AdmissionStatus application={data} />
+
+                            </div>
+
+
+                        </div>
+                        <DashCard
+                            href="/portal/fees"
+                            label="Fees"
+                            img={billsIcon}
+                        />
+                        <DashCard
+                            href="/portal/profile"
+                            label="Profile"
+                            img={profileIcon}
+                        />
+                    </div>
+                )}
+
             </section>
         </>
     );

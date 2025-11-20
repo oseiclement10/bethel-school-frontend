@@ -5,7 +5,7 @@ import PrimaryButton from "../buttons/primary";
 
 export const FormHeader = ({ children }: PropsWithChildren) => {
     return (
-        <div className="pb-4 mb-5 flex  items-center text-xl font-semibold  text-primary border-b border-slate-300">
+        <div className="pb-4 mb-5 flex  items-center text-xl font-semibold font-poppins  text-blue-700 border-b border-slate-300">
             {children}
         </div>
     );

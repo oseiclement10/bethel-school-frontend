@@ -178,3 +178,28 @@ export interface StudentDetails extends Student {
     recent_class: StudentEnrollMent | null;
     current_class: StudentEnrollMent | null;
 }
+
+export interface Stage {
+  id: number;
+  name: string;
+  status: boolean;
+}
+
+export interface Fee {
+  id: number;
+  name: string;
+  amount: number;
+}
+
+export interface BillData {
+    id: number;
+    name: string;
+    status: boolean;
+    academic_year_id: number;
+    academic_year: AcademicYear;
+    fees: Fee[];
+    stage: Stage;
+    applies_to: string;
+    created_at: string;
+    updated_at: string;
+}

@@ -6,9 +6,9 @@ export type User = {
     email: string;
     phone_number: string;
     phone_code: string;
-    image: string;
     status: boolean;
     address?: string;
+    passport:string;
 };
 export interface AuthUser {
     user: User;

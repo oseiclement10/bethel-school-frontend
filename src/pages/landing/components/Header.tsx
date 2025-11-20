@@ -82,8 +82,8 @@ const Header = () => {
     );
 };
 
-// Extracted Logo component for reusability
-const Logo = () => (
+
+export const Logo = () => (
     <div className="flex items-center space-x-2">
         <span className="flex px-2 py-0.5 bg-white rounded-lg">
             <img src={logoImg} alt="Bethel School logo" className="w-11" />

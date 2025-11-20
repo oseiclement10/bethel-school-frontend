@@ -31,7 +31,7 @@ const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const removeUser = () => {
     postHelper("logout", {});
     localStorage.removeItem("usr");
-    window.location.href = "/login";
+    window.location.href = "/portal/login";
   };
 
   const updateUserInfo = (userInfo: AuthUser) => {

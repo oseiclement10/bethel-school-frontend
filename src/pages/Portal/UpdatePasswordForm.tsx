@@ -1,167 +1,121 @@
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
-import ThemeButton from "@/Components/ThemeButton";
-import { Transition } from "@headlessui/react";
-import { useForm } from "@inertiajs/react";
-import { Button, notification } from "antd";
-import { FormEventHandler, useEffect, useRef } from "react";
-import { OverlayProps } from "@/types/common";
+import React, { useState } from "react";
+import { Form, Input, notification } from "antd";
+import { useMutation } from "@tanstack/react-query";
+import { postHelper } from "@/services/apiService";
+import FormErrorAlert from "@/components/crud/form-error-alert";
+import { parseApiError } from "@/utils/parse-api-errors";
+import type { RequestError } from "@/@types/error";
+import { IoMdKey } from "react-icons/io";
+import { FormHeader } from "@/components/crud/form-config";
 
-type UpdatePasswordFormProps = OverlayProps & {
+interface UpdatePasswordFormProps {
     className?: string;
-};
+    closeModal: () => void;
+}
 
-export default function UpdatePasswordForm({
-    className = "",
-    closeModal,
-}: UpdatePasswordFormProps) {
-    const passwordInput = useRef<HTMLInputElement>(null);
-    const currentPasswordInput = useRef<HTMLInputElement>(null);
+const UpdatePasswordForm: React.FC<UpdatePasswordFormProps> = ({ className, closeModal }) => {
+    const [form] = Form.useForm();
+    const [showError, setShowError] = useState(false);
 
-    const {
-        data,
-        setData,
-        errors,
-        put,
-        reset,
-        processing,
-        wasSuccessful,
-        recentlySuccessful,
-    } = useForm({
-        current_password: "",
-        password: "",
-        password_confirmation: "",
+
+
+    const { mutate, isPending, error } = useMutation({
+        mutationFn: (data: any) => postHelper("portal/update-password", data),
+        onSuccess: () => {
+            notification.success({ message: "Updated password successfully" });
+            form.resetFields();
+            closeModal();
+        },
+        onError: () => {
+            setShowError(true);
+        }
     });
 
-    const updatePassword: FormEventHandler = (e) => {
-        e.preventDefault();
-
-        put(route("portal.profile.update-password"), {
-            preserveScroll: true,
-            onSuccess: () => {
-                closeModal();
-                reset();
-            },
-            onError: (errors) => {
-                if (errors.password) {
-                    reset("password", "password_confirmation");
-                    passwordInput.current?.focus();
-                }
-
-                if (errors.current_password) {
-                    reset("current_password");
-                    currentPasswordInput.current?.focus();
-                }
-            },
-        });
+    const onFinish = (values: any) => {
+        mutate(values);
     };
-
-    useEffect(() => {
-        if (wasSuccessful) {
-            notification.success({ message: "Updated password successfully" });
-        }
-    }, [wasSuccessful]);
 
     return (
         <section className={className}>
+            {/* Header */}
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <FormHeader>
                     Update Password
-                </h2>
-
-                <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay
-                    secure.
+                </FormHeader>
+                <p className="mt-1 mb-4 text-sm text-gray-600">
+                    Ensure your account uses a long, random password to stay secure.
                 </p>
             </header>
 
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Current Password"
+            <Form
+                form={form}
+                layout="vertical"
+                onFinish={onFinish}
+                onFieldsChange={() => setShowError(false)}
+            >
+                 <Form.Item
+                    label="Current Password"
+                    name="current_password"
+                    rules={[{ required: true, message: "Please enter your new password" }]}
+                >
+                    <Input.Password
+                        size="large"
+                        prefix={<IoMdKey />}
+                        placeholder="Enter new password"
                     />
+                </Form.Item>
 
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData("current_password", e.target.value)
-                        }
-                        type="password"
-                        required
-                        className="block w-full mt-1"
-                        autoComplete="current-password"
+                <Form.Item
+                    label="New Password"
+                    name="password"
+                    rules={[{ required: true, message: "Please enter your new password" }]}
+                >
+                    <Input.Password
+                        size="large"
+                        prefix={<IoMdKey />}
+                        placeholder="Enter new password"
                     />
+                </Form.Item>
 
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
+                <Form.Item
+                    label="Confirm Password"
+                    name="password_confirmation"
+                    dependencies={["password"]}
+                    rules={[
+                        { required: true, message: "Please confirm your password" },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                                if (!value || getFieldValue("password") === value) {
+                                    return Promise.resolve();
+                                }
+                                return Promise.reject(new Error("Passwords do not match"));
+                            },
+                        }),
+                    ]}
+                >
+                    <Input.Password
+                        size="large"
+                        prefix={<IoMdKey />}
+                        placeholder="Confirm new password"
                     />
-                </div>
+                </Form.Item>
 
-                <div>
-                    <InputLabel htmlFor="password" value="New Password" />
+                {showError && (
+                    <FormErrorAlert message={parseApiError(error as RequestError)} />
+                )}
 
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
-                        required
-                        value={data.password}
-                        onChange={(e) => setData("password", e.target.value)}
-                        type="password"
-                        className="block w-full mt-1"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        value={data.password_confirmation}
-                        onChange={(e) =>
-                            setData("password_confirmation", e.target.value)
-                        }
-                        required
-                        type="password"
-                        className="block w-full mt-1"
-                        autoComplete="new-password"
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
-
-                <div className="flex items-center gap-4">
-                    <div className="flex items-end space-x-3 jutify-end">
-                        <Button onClick={() => closeModal()}>Cancel</Button>
-                        <ThemeButton disabled={processing}>
-                            Save Changes{" "}
-                        </ThemeButton>
-                    </div>
-
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
+                <Form.Item>
+                    <button
+                        className={`w-full bg-blue-800 text-white p-3 rounded-lg font-medium ${isPending ? "cursor-not-allowed opacity-70" : "hover:opacity-80"
+                            }`}
+                        disabled={isPending}
                     >
-                        <p className="text-sm text-gray-600">Saved.</p>
-                    </Transition>
-                </div>
-            </form>
+                        {isPending ? "Resetting..." : "Reset Password"}
+                    </button>
+                </Form.Item>
+            </Form>
         </section>
     );
-}
+};
+
+export default UpdatePasswordForm;

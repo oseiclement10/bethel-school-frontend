@@ -35,3 +35,10 @@ export type PaginatedResponse<T> = {
   data: T[];
   meta?: PaginationMeta;
 };
+
+export type ModalMode = "add" | "edit" | "delete" | "other" | "view";
+export type ModalProps<T> = {
+  open: boolean;
+  type: ModalMode;
+  data: null | T;
+}

@@ -3,9 +3,7 @@ import Courses from "./pages/landing/Courses";
 import AboutUs from "./pages/landing/About";
 import ContactUs from './pages/landing/Contact';
 import Application from './pages/landing/Application';
-
 import { createBrowserRouter, Navigate, Outlet, RouterProvider, } from 'react-router';
-
 import AdmissionProcess from './pages/AdmissionProcess';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ScrollToTop from './components/scroll-to-top';
@@ -15,6 +13,8 @@ import Fees from './pages/Portal/Fees';
 import ForgetPassword from './pages/Portal/ForgetPassword';
 import ResetPassword from './pages/Portal/ResetPassword';
 import { PortalProtectedLayout, PortalPublicLayout } from './components/layouts/PortalLayouts';
+import AuthContextProvider from './contexts/AuthContext';
+import Profile from './pages/Portal/Profile';
 
 const AppLayout = () => {
     return (
@@ -22,6 +22,7 @@ const AppLayout = () => {
             <ScrollToTop />
             <Outlet />
         </main>
+
     )
 }
 
@@ -75,7 +76,8 @@ const router = createBrowserRouter([
                 element: <PortalProtectedLayout />,
                 children: [
                     { path: "dashboard", element: <Dashboard /> },
-                    { path: "fees", element: <Fees /> }
+                    { path: "fees", element: <Fees /> },
+                    { path: "profile", element: <Profile /> }
                 ]
             }
         ]
@@ -88,7 +90,9 @@ const AppProvider = () => {
     const queryClient = new QueryClient();
     return (
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
+            <AuthContextProvider>
+                <RouterProvider router={router} />
+            </AuthContextProvider>
         </QueryClientProvider>
 
     )

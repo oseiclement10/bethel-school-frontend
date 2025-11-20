@@ -25,7 +25,7 @@ type AddressTile = {
 export const AddressTile = ({ label, value, icon }: AddressTile) => {
     return (
         <div className="flex items-center ">
-            <div className="w-[20px] text-lg text-slate-600">
+            <div className="w-5 text-lg text-slate-600">
                 {icon}
             </div>
             <div className="ml-6">

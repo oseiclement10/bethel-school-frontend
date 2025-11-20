@@ -1,23 +1,21 @@
-import { Head, Link, usePage } from "@inertiajs/react";
-import Layout from "@/Layouts/Portal";
-import { useState } from "react";
+import type { AdmissionApplication } from "@/@types/entities";
+import { Link } from "react-router";
 
-const Admission = () => {
-    const { status } = usePage<{ status: string }>().props;
+
+export const AdmissionStatus = ({ application }: { application: AdmissionApplication }) => {
+
 
     return (
-        <Layout>
-            <Head title="Admission Status" />
-            <section className="min-h-full p-5 bg-white lg:p-10 rounded-tr-xl rounded-tl-xl">
-                <h3 className="mb-4 text-xl font-semibold text-blue-900">
-                    Application Status
-                </h3>
 
-                {status === "pending" && <Pending />}
-                {status === "approved" && <Approved />}
-                {status === "rejected" && <Rejected />}
-            </section>
-        </Layout>
+        <section className="min-h-full  bg-white  rounded-tr-xl rounded-tl-xl">
+            <h3 className="mb-4 text-xl font-semibold text-blue-900">
+                Application Status
+            </h3>
+
+            {application.status === "pending" && <Pending />}
+            {application.status === "approved" && <Approved />}
+            {application.status === "rejected" && <Rejected />}
+        </section>
     );
 };
 
@@ -40,7 +38,7 @@ const Pending = () => {
 
 const Approved = () => {
     const handleDownload = () => {
-        const url = route("portal.acceptance-letter.download");
+        const url = "portal.acceptance-letter.download";
         window.location.href = url;
     };
     return (
@@ -75,7 +73,7 @@ const Approved = () => {
                     Download Acceptance Letter
                 </button>
                 <Link
-                    href="/portal/fees"
+                    to="/portal/fees"
                     className="px-2 text-sm text-blue-600 underline py-[3px] rounded-md"
                 >
                     View Fees
@@ -108,11 +106,11 @@ const Status = ({ type = "pending" }) => {
         type === "approved"
             ? "bg-emerald-500"
             : type === "rejected"
-            ? " bg-red-500"
-            : "bg-amber-500";
+                ? " bg-red-500"
+                : "bg-amber-500";
     return (
-        <span className={`flex w-2 h-2 ml-1 mt-[1px] ${color} rounded-full`} />
+        <span className={`flex w-2 h-2 ml-1 mt-0.5 ${color} rounded-full`} />
     );
 };
 
-export default Admission;
+
