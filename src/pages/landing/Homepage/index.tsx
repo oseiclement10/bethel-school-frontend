@@ -11,7 +11,7 @@ import WhyJoinUs from "./JoinUs";
 
 const Homepage = () => {
   return (
-    <section className="font-poppins">
+    <section className="font-poppins overflow-x-hidden">
       <Hero />
       <Courses />
       <WhyJoinUs />

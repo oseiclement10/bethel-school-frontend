@@ -10,8 +10,8 @@ interface FadeUpProps {
 
 export function FadeUp({
     children,
-    delay = 0,
-    duration = 0.7,
+    delay = 0.2,
+    duration = 0.4,
     distance = 30,
 }: FadeUpProps) {
     return (

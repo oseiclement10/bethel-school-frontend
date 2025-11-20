@@ -37,7 +37,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="relative z-10 items-center justify-between hidden w-5/6 py-3 mx-auto lg:flex">
+            <header className="relative z-10 items-center max-w-7xl lg:max-w-[88%] justify-between hidden  py-3 mx-auto lg:flex">
                 <Logo />
                 <Nav className="relative mx-auto w-[35%] space-x-6" />
                 <ApplyButton

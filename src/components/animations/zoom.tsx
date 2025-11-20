@@ -3,6 +3,7 @@ import React from "react";
 
 interface ZoomInProps {
   children: React.ReactNode;
+  className?:string;
   duration?: number;
   delay?: number;
   scaleFrom?: number;
@@ -13,6 +14,7 @@ export default function ZoomIn({
   duration = 0.6,
   delay = 0,
   scaleFrom = 0.85,
+  className
 }: ZoomInProps) {
   return (
     <motion.div
@@ -24,6 +26,7 @@ export default function ZoomIn({
         delay,
         ease: "easeOut" as const, 
       }}
+      className={className}
     >
       {children}
     </motion.div>

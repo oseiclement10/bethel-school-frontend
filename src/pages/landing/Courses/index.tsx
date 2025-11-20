@@ -10,7 +10,34 @@ import { FadeUp } from "@/components/animations/fades";
 const Courses = () => {
     return (
         <section className="font-poppins bg-gray-50 min-h-screen">
-            <meta title="Courses" />
+            <title>Courses | Bethel School of Fashion and Design</title>
+
+            <meta
+                name="title"
+                content="Courses | Bethel School of Fashion and Design"
+            />
+
+            <meta
+                name="description"
+                content="Explore professional courses at Bethel School of Fashion and Design, including Fashion & Design, Event Decor & Planning, Millinery & Accessories, Fashion Illustration, Modelling, and Makeup. Gain hands-on training and industry skills at our campuses in Atonsu Agogo and Abidjan Nkwanta."
+            />
+
+            <meta
+                name="keywords"
+                content="Fashion Courses, Design Courses, Event Decor Training, Event Planning School, Millinery Courses, Accessories Design Training, Fashion Illustration Classes, Modelling School, Makeup Courses, Beauty School Ghana, Bethel School of Fashion and Design, Atonsu Agogo Fashion School, Abidjan Nkwanta Fashion School"
+            />
+
+            <meta name="robots" content="index, follow" />
+
+            
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content="Courses | Bethel School of Fashion and Design" />
+            <meta
+                property="og:description"
+                content="Discover our courses: Fashion & Design, Event Decor & Planning, Millinery & Accessories, Fashion Illustration, Modelling, and Makeup. Hands-on professional training at Bethel School of Fashion and Design."
+            />
+            <meta property="og:url" content="https://school.bethelfashion.online/courses" />
+
 
             <section className="relative bg-blue-600 ">
                 <Header />

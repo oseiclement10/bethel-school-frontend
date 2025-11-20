@@ -7,45 +7,46 @@ import { FadeUp, FadeUpStagger } from "@/components/animations/fades";
 const CoursesScreen = () => {
     return (
         <section className="mt-20 font-poppins">
-            <FadeUp distance={30}>
+            <FadeUp delay={0} distance={30}>
                 <h2 className="mb-2 text-4xl font-semibold text-center ">
                     What We <span className="text-blue-700">Provide</span>{" "}
                 </h2>
                 <PillCaption title="Key Benefits" />
-
-                <FadeUpStagger className="grid gap-10 md:gap-12  mx-auto w-[90%] md:w-5/6 lg:grid-cols-3 md:grid-cols-2 pt-8 lg:pt-14 mb-28">
-                    <Card
-                        title="Hands On Training"
-                        count="01"
-                        description={
-                            "We offer hands-on, in-person training that equips students with practical skills in design, garment construction, and fabric manipulation, ensuring they gain real-world experience to excel in the fashion industry."
-                        }
-                        data-aos="fade-up"
-                    />
-                    <Card
-                        title="Industry Expertise"
-                        count="02"
-                        description={
-                            "Our training is led by industry experts, providing insider knowledge and real-world insights to prepare you for a successful career in fashion."
-                        }
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                    />
-                    <Card
-                        title="TVET Certification"
-                        count="03"
-                        description={
-                            "Earn a recognized TVET certification that equips you with the technical skills and vocational expertise needed to excel in the competitive fashion industry."
-                        }
-                        data-aos="fade-up"
-                        data-aos-delay="300"
-                    />
-                </FadeUpStagger>
             </FadeUp>
 
+            <FadeUpStagger delayChildren={0.3} className="grid gap-10 md:gap-12  mx-auto w-[90%] md:w-5/6 lg:grid-cols-3 md:grid-cols-2 pt-8 lg:pt-14 mb-28">
+                <Card
+                    title="Hands On Training"
+                    count="01"
+                    description={
+                        "We offer hands-on, in-person training that equips students with practical skills in design, garment construction, and fabric manipulation, ensuring they gain real-world experience to excel in the fashion industry."
+                    }
+                    data-aos="fade-up"
+                />
+                <Card
+                    title="Industry Expertise"
+                    count="02"
+                    description={
+                        "Our training is led by industry experts, providing insider knowledge and real-world insights to prepare you for a successful career in fashion."
+                    }
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                />
+                <Card
+                    title="TVET Certification"
+                    count="03"
+                    description={
+                        "Earn a recognized TVET certification that equips you with the technical skills and vocational expertise needed to excel in the competitive fashion industry."
+                    }
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                />
+            </FadeUpStagger>
 
 
-            <FadeUp>
+
+
+            <FadeUp delay={0.3}>
                 <section
                     className="grid w-[90%] lg:w-5/6 gap-6 py-8 lg:grid-cols-4 lg:gap-12 lg:py-10 mx-auto my-10"
                     data-aos="fade-up"
