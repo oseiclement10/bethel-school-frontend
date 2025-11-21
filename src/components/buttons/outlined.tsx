@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import type { CommonButtonProps } from "@/@types/common";
 
 export const OutlinedButton = ({ label, className, asLink, icon, ...props }: CommonButtonProps) => {

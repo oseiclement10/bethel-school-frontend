@@ -211,7 +211,7 @@ const TestimonialsSection: React.FC = () => {
 
 
                 {/* Thumbnail Navigation */}
-                <div className="flex justify-center items-center space-x-3 md:space-x-4 mb-8">
+                <div className="flex justify-center  h-20 items-center space-x-3 md:space-x-4 mb-8">
                     {testimonials.map((testimonial, index) => (
                         <button
                             key={index}

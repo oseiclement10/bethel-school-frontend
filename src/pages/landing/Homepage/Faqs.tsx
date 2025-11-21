@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle, BookOpen, Users, GraduationCap, Mail, Sparkles } from 'lucide-react';
+import { Link} from 'react-router';
 
 interface FAQItem {
   id: number;
@@ -144,9 +145,9 @@ const FAQSection: React.FC = () => {
                 <p className="text-sm text-blue-100 mb-4">
                   Our admissions team is here to help you.
                 </p>
-                <button className="w-full bg-white text-blue-600 py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-50 transition-colors shadow-md">
+                <Link to="/contact-us" className="w-full bg-white text-blue-600 py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-50 transition-colors shadow-md">
                   Contact Admissions
-                </button>
+                </Link>
               </div>
             </div>
           </div>
