@@ -68,7 +68,7 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ onSuccess, onGoBack }) => {
                         description: "Payment has been cancelled, please try again to complete your payment."
                     })
                 },
-                config: { ...paystackConfig, amount: resp?.amount, metadata: { ...paystackConfig.metadata, payment_id: resp?.payment?.id } }
+                config: { ...paystackConfig, amount: getActualAmount(resp?.amount), metadata: { ...paystackConfig.metadata, payment_id: resp?.payment?.id } }
             });
         },
 
